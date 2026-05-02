@@ -129,14 +129,17 @@ a:hover {
 
 .sakuraso,
 .shironeko {
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  color: #4f5668;
 }
 
 .no {
-  font-size: 18px;
-  margin: 0 3px;
+  font-size: 19px;
+  margin: 0 6px;
   color: #999;
+  font-weight: 300;
 }
 
 .sakuraso {
@@ -340,10 +343,26 @@ a:hover {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 20% 20%, rgba(255,198,222,.36), transparent 30%),
-    radial-gradient(circle at 80% 28%, rgba(180,220,255,.28), transparent 34%),
-    linear-gradient(135deg, #fff7fb 0%, #f4f8ff 45%, #ffffff 100%);
+    radial-gradient(circle at 18% 22%, rgba(255,183,197,.55), transparent 26%),
+    radial-gradient(circle at 82% 18%, rgba(170,210,255,.45), transparent 30%),
+    radial-gradient(circle at 50% 82%, rgba(255,240,250,.75), transparent 36%),
+    linear-gradient(135deg, #f9e8ef 0%, #eef6ff 42%, #fff8fb 100%);
+  background-size: cover;
+  background-position: center;
   z-index: 0;
+}
+
+.main-header-bg::before {
+  content: "❀";
+  position: absolute;
+  left: 12%;
+  top: 20%;
+  font-size: 72px;
+  color: rgba(255,255,255,.42);
+  text-shadow:
+    120px 60px 0 rgba(255,255,255,.24),
+    260px 130px 0 rgba(255,198,222,.22),
+    420px 40px 0 rgba(255,255,255,.20);
 }
 
 .main-header-overlay {
@@ -351,8 +370,7 @@ a:hover {
   inset: 0;
   z-index: 1;
   background:
-    radial-gradient(circle at center, rgba(255,255,255,.1), rgba(255,255,255,.35)),
-    rgba(0,0,0,.05);
+    linear-gradient(to bottom, rgba(0,0,0,.18), rgba(255,255,255,.08) 48%, rgba(255,255,255,.28));
 }
 
 .headertop {
@@ -381,12 +399,17 @@ a:hover {
 
 .header-info {
   display: inline-block;
-  max-width: 620px;
-  padding: 16px 26px;
-  border-radius: 10px;
-  background: rgba(0,0,0,.32);
+  max-width: 660px;
+  padding: 18px 34px;
+  border-radius: 14px;
+  background: rgba(40,45,55,.26);
+  border: 1px solid rgba(255,255,255,.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 12px 38px rgba(0,0,0,.12);
   color: #fff;
-  line-height: 1.8;
+  line-height: 1.9;
+  letter-spacing: .5px;
 }
 
 .header-info p {
@@ -427,19 +450,26 @@ a:hover {
   top: 50%;
   z-index: 5;
   transform: translateY(-50%);
-  background: rgba(0,0,0,.2);
-  color: #fff;
-  border: none;
-  width: 40px;
-  height: 60px;
+  width: 42px;
+  height: 72px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.18);
+  color: rgba(255,255,255,.85);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: none;
   font-size: 24px;
   cursor: pointer;
-  border-radius: 4px;
-  opacity: .5;
-  transition: opacity .2s;
+  opacity: .7;
+  transition: all .3s ease;
 }
 
-.bg-switch:hover { opacity: .9; }
+.bg-switch:hover {
+  background: rgba(254,150,0,.72);
+  color: #fff;
+  opacity: 1;
+}
 
 .bg-pre { left: 8px; }
 
@@ -520,14 +550,14 @@ a:hover {
   width: 100%;
   margin: 28px 0;
   border-radius: 10px;
-  background: var(--card);
-  box-shadow: 0 1px 20px -6px rgba(0,0,0,.3);
+  background: rgba(255,255,255,.88);
+  box-shadow: 0 1px 20px -8px rgba(0,0,0,.45);
   transition: all .3s ease;
   overflow: hidden;
 }
 
 .post-list-thumb:hover {
-  box-shadow: 0 5px 16px rgba(110,110,110,.25);
+  box-shadow: 0 8px 28px rgba(110,110,110,.3);
   transform: translateY(-3px);
 }
 
@@ -538,20 +568,21 @@ a:hover {
 .post-thumb {
   flex: 0 0 44%;
   min-height: 220px;
-  background: var(--card-fb);
+  background: var(--thumb-bg, var(--card-fb));
   position: relative;
   overflow: hidden;
   transition: transform .5s;
 }
 
 .post-thumb::after {
-  content: '🌸';
+  content: "❀";
   position: absolute;
-  top: 50%;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
-  font-size: 42px;
-  opacity: .3;
+  font-size: 64px;
+  color: rgba(255,255,255,.38);
+  text-shadow: 0 6px 20px rgba(255,150,180,.18);
   pointer-events: none;
 }
 
@@ -570,24 +601,25 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 22px 26px;
+  padding: 26px 30px;
 }
 
 .post-date {
   color: #888;
-  font-size: 12px;
+  font-size: 13px;
   margin-bottom: 4px;
 }
 
 .post-title {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 600;
-  margin: 6px 0;
+  margin: 8px 0;
 }
 
 .post-title a {
   color: #504e4e !important;
   text-decoration: none !important;
+  font-weight: 600;
 }
 
 .post-title a:hover {
@@ -596,10 +628,10 @@ a:hover {
 
 .post-meta {
   color: #888;
-  font-size: 12px;
+  font-size: 13px;
   margin: 6px 0;
   display: flex;
-  gap: 12px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
@@ -608,9 +640,9 @@ a:hover {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
-  margin: 6px 0;
-  line-height: 1.6;
-  color: rgba(0,0,0,.5);
+  margin: 8px 0;
+  line-height: 1.9;
+  color: rgba(0,0,0,.52);
   font-size: 14px;
 }
 
@@ -982,11 +1014,12 @@ a:hover {
 
   .sakuraso,
   .shironeko {
-    font-size: 22px;
+    font-size: 24px;
+    font-weight: 600;
   }
 
   .no {
-    font-size: 17px;
+    font-size: 18px;
   }
 
   .chinese-font {
@@ -1020,11 +1053,18 @@ a:hover {
   }
 
   .header-info {
-    max-width: 86%;
+    max-width: 78%;
     padding: 14px 18px;
-    font-size: 15px;
-    line-height: 1.8;
-    background: rgba(0,0,0,.28);
+    font-size: 16px;
+    line-height: 1.9;
+    background: rgba(40,45,55,.22);
+  }
+
+  .bg-switch {
+    width: 34px;
+    height: 56px;
+    opacity: .45;
+    border-radius: 8px;
   }
 
   .top-social_v2 {
