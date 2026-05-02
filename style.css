@@ -342,13 +342,21 @@ a:hover {
 .main-header-bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at 18% 22%, rgba(255,183,197,.55), transparent 26%),
-    radial-gradient(circle at 82% 18%, rgba(170,210,255,.45), transparent 30%),
-    radial-gradient(circle at 50% 82%, rgba(255,240,250,.75), transparent 36%),
-    linear-gradient(135deg, #f9e8ef 0%, #eef6ff 42%, #fff8fb 100%);
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.main-header-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255,183,197,.28), transparent 26%),
+    radial-gradient(circle at 82% 18%, rgba(170,210,255,.22), transparent 30%),
+    radial-gradient(circle at 50% 82%, rgba(255,240,250,.40), transparent 36%),
+    linear-gradient(135deg, rgba(249,232,239,.6) 0%, rgba(238,246,255,.6) 42%, rgba(255,248,251,.6) 100%);
   z-index: 0;
 }
 
@@ -574,16 +582,24 @@ a:hover {
   transition: transform .5s;
 }
 
-.post-thumb::after {
-  content: "❀";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 64px;
-  color: rgba(255,255,255,.38);
-  text-shadow: 0 6px 20px rgba(255,150,180,.18);
-  pointer-events: none;
+.post-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .6s ease;
+}
+
+.post-list-thumb:hover .post-thumb img {
+  transform: scale(1.05);
+}
+
+.post-thumb.img-fallback {
+  background: var(--thumb-bg), linear-gradient(135deg, #ffe8f1, #eaf6ff);
+}
+
+.post-thumb.img-fallback img {
+  display: none;
 }
 
 .post-thumb a {
@@ -667,10 +683,11 @@ a:hover {
 }
 
 .pattern-attachment-img {
-  background: var(--card-fb);
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   height: 240px;
+  background-color: var(--card-fb);
 }
 
 .pattern-header {
