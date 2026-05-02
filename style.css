@@ -1,0 +1,223 @@
+/* ═══ Sakura Theme — exact from CNblogs-Theme-Sakura/page.css ═══ */
+:root {
+  --orange: #FE9600; --pink: #FFC6DE; --text: #61687C; --title: #314659;
+  --line: #EEF2F8; --card: rgba(255,255,255,.86);
+}
+body{cursor:url(https://files-cdn.cnblogs.com/files/zouwangblog/cursor.ico),auto;background:#fff;color:#314659;min-height:100%!important;font-family:Lato,"PingFang SC","Microsoft YaHei",sans-serif!important}
+body::before{background:url(https://img2018.cnblogs.com/blog/1646268/201907/1646268-20190709145111387-899901278.jpg) center/cover no-repeat}
+body:before{content:'';background-repeat:no-repeat;background-position:center;opacity:.05;position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1}
+*{box-sizing:border-box}
+a{transition:all .3s ease!important;color:#61687C}
+a:hover{color:#FE9600!important;text-decoration:none!important}
+
+/* Scroll progress */
+.scrollCls{position:fixed;top:0;left:0;height:3px;background:#FE9600;z-index:99999;width:0;transition:width .2s ease}
+
+/* Header */
+#header{position:fixed;top:0;right:0;left:0;margin:0 auto;border-top:0;background:#fff;border-bottom:0px #ffebf2 solid;padding-bottom:0;width:100%;height:75px;z-index:999;opacity:0;transition:opacity .4s ease}
+#header.visible{opacity:1}
+#header #blogTitle{position:absolute}
+#header #blogTitle h1{font-size:25px;font-family:Georgia;width:auto;margin-left:0;margin-top:12px;padding-left:15px}
+#header #blogTitle h1 a{color:#61687C}
+#header #navigator{height:inherit;top:0;background-color:transparent;z-index:999}
+#header #navList{height:inherit;width:100%;display:flex;align-items:center;justify-content:flex-end;margin-left:100px;transition:all .4s ease;padding-right:1%;list-style:none}
+#header #navList li{position:relative}
+#header #navList li i{width:0;height:4px;background-color:#FE9600;content:"";position:absolute;left:50%;bottom:0;transition:1s}
+#header #navList li:hover i{width:100%;left:0}
+#header #navList a{font-size:16px;border-right:0;color:#61687C;display:block;font-weight:300;padding:28px 0;height:inherit;transition:all .3s;text-decoration:none}
+#header #navList a:hover{background:0 0}
+.sub-menu{display:none;opacity:1;position:absolute;background:#fff;padding:10px;top:46px;right:-13px;width:100px;text-align:center;z-index:9999;border-radius:5px;box-shadow:0 1px 40px -8px rgba(0,0,0,.5);animation:fadeInUp .3s .1s ease both;list-style:none}
+.sub-menu:before{content:"";position:absolute;top:-20px;left:50%;margin-left:-10px;border-width:10px;border-style:solid;border-color:transparent transparent #fff}
+#navList li:hover .sub-menu{display:block}
+.sub-menu a{padding:10px 0!important;font-size:14px!important}
+
+/* Logo */
+.site-branding{float:left;position:fixed;top:10px;height:75px;line-height:75px;z-index:1000;animation:sitetop 1s}
+.logolink.moe-mashiro{font-family:'Moe-Mashiro','Merriweather Sans',Helvetica,Tahoma,Arial,'PingFang SC','Microsoft Yahei',sans-serif}
+.logolink.moe-mashiro a{color:#464646;float:left;font-size:25px;font-weight:800;height:56px;line-height:56px;padding-left:12px;padding-right:15px;text-decoration:none}
+.logolink ruby{ruby-position:under;-webkit-ruby-position:after}
+.logolink .sakuraso{font-size:25px;border-radius:9px;padding:5px 0 0 2px;background:rgba(255,255,255,.5)}
+.logolink .no{font-size:25px;border-radius:9px;padding:5px 0 0 2px}
+.logolink .shironeko{font-size:25px;border-radius:9px;padding:5px 0 0 2px}
+.chinese-font{display:none;margin-top:-5px;font-size:12px;color:#888}
+@keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(359deg)}}
+@keyframes sitetop{0%{opacity:0;transform:translateY(-30px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes fadeInUp{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:translateY(0)}}
+
+/* Main content */
+#main{margin:100vh auto 0;min-height:750px;animation:fadeIn 1s;z-index:9999;min-width:0!important}
+#main.nomargin{margin:0 auto}
+#mainContent{background-color:transparent}
+.forFlow{margin:0 auto;max-width:800px}
+@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}
+
+/* Hero */
+.main-header{display:table;width:100%;height:100vh;max-height:100vh;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;overflow:hidden;position:absolute;top:0;left:0;z-index:-1;box-shadow:0 1px 2px rgba(150,150,150,.7)}
+.headertop{overflow:hidden;height:0}
+.headertop:before{content:'';position:absolute;top:0;bottom:0;left:0;right:0;z-index:3;background-attachment:fixed}
+.headertop.filter-dot:before{background-image:url(https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190806130657359-228955661.png)}
+.focusinfo{position:absolute;max-width:800px;padding:0 10px;width:95%;top:49.3%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:99}
+.center-text{margin:auto;font-family:'Ubuntu',sans-serif;font-size:80px;text-transform:uppercase;font-weight:800;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.3)}
+.header-info{margin:auto;font-size:16px;color:#eaeadf;background:rgba(0,0,0,.5);padding:15px;margin-top:22px;letter-spacing:0;line-height:30px;border-radius:10px;overflow:hidden}
+.header-info p{margin:0;font-family:'Ubuntu',sans-serif;font-weight:700;overflow:hidden;text-overflow:ellipsis}
+.top-social_v2{display:flex;flex-direction:row;flex-wrap:wrap;align-content:center;justify-content:center;align-items:center;list-style:none;margin-top:16px}
+.top-social_v2 li{float:left;margin-right:13px}
+.top-social_v2 img{height:30px;width:30px;padding:6px;background:0 0;cursor:pointer}
+.flipx{transform:scaleX(-1)}
+.scroll-down{display:block;position:absolute;bottom:80px;left:50%;margin-left:-16px;width:34px;height:34px;font-size:34px;text-align:center;animation:float 2s linear infinite;text-decoration:none!important;color:white!important;z-index:1000;cursor:pointer}
+@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+
+/* Wave */
+.wave{position:absolute;height:110px;width:100%;overflow:hidden;bottom:0;z-index:99}
+.wave #banner_wave_1,.wave #banner_wave_2{position:absolute;width:200%;height:100%;background-size:50% 100%}
+.wave #banner_wave_1{top:20px;left:-100%;opacity:1;animation:water-right 20s infinite linear;background:url(https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807133952249-1243696775.png) repeat-x}
+.wave #banner_wave_2{top:30px;left:0;opacity:1;animation:water-left 30s infinite linear;background:url(https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807133945197-1434861417.png) repeat-x}
+@keyframes water-right{0%{transform:translateX(0) translateZ(0) scaleY(1)}50%{transform:translateX(25%) translateZ(0) scaleY(0.85)}100%{transform:translateX(50%) translateZ(0) scaleY(1)}}
+@keyframes water-left{from{transform:translate(0%,0px)}to{transform:translate(-50%,0px)}}
+
+/* Post list cards */
+.post-list-thumb{width:100%;position:relative;margin:20px 0;border-radius:10px;background:var(--card);box-shadow:0 1px 20px -6px rgba(0,0,0,.5);transition:box-shadow .3s ease,transform .3s ease;overflow:hidden}
+.post-list-thumb:hover{box-shadow:0 5px 10px 5px rgba(110,110,110,.4);transform:translateY(-3px)}
+.post-list-thumb a{color:#504e4e;text-decoration:none}
+.post-thumb{position:relative;float:right;width:55%;height:300px;overflow:hidden}
+.post-thumb a{display:block;width:100%;height:100%;background-size:cover;background-position:center;border-radius:0 10px 10px 0}
+.post-thumb img{width:100%;height:100%;object-fit:cover;transition:all .6s}
+.post-list-thumb:hover .post-thumb img{transform:scale(1.1)}
+.post-content-wrap{position:relative;display:inline-block;float:left;padding:0 30px;width:45%;margin:20px 0}
+.post-date{color:#888;font-size:12px;margin-bottom:8px}
+.post-title{font-size:18px;font-weight:600;margin:15px 0}
+.post-meta{color:#888;font-size:12px;margin:10px 0;display:flex;gap:12px;flex-wrap:wrap}
+.post-meta span{display:inline-flex;align-items:center;gap:4px}
+.float-content p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;margin:10px 0 20px;line-height:1.7;color:rgba(0,0,0,.66);font-size:14px}
+.post-list-thumb-left .post-thumb{float:left}
+.post-list-thumb-left .post-thumb a{border-radius:10px 0 0 10px}
+.post-list-thumb-left .post-content-wrap{float:right}
+
+/* Notice */
+.notice{padding:15px 20px;border:1px dashed #e6e6e6;color:#969696;background:rgba(251,251,251,.5);border-radius:10px;font-size:14px;margin:10px auto 24px;max-width:800px}
+.notice i{float:left;color:#999;font-size:18px;padding-right:10px}
+
+/* Pattern center for layer/code pages */
+.pattern-center{position:relative;top:0;left:0;width:100%;overflow:hidden;margin-bottom:30px}
+.pattern-center:before{content:"";position:absolute;top:0;bottom:0;left:0;right:0;background:rgba(0,0,0,.15);z-index:1}
+.pattern-attachment-img{background-size:cover;background-position:center;width:100%;height:320px}
+.pattern-header{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;color:#fff;z-index:2;width:90%}
+.entry-title{font-size:36px;font-weight:500;text-shadow:2px 2px 10px rgba(0,0,0,.3)}
+.entry-census{font-size:14px;margin-top:12px;opacity:.85}
+
+/* Post / article body */
+.post{animation:main .6s}
+@keyframes main{0%{opacity:0;transform:translateY(50px)}100%{opacity:1;transform:translateY(0)}}
+.postBody{font-weight:300;font-size:15px;line-height:1.7;color:#61687C}
+.postBody h1{font-size:21px!important;color:#61687C}
+.postBody h2{font-size:19px!important;color:#314659}
+.postBody h3{font-size:17px!important;color:#314659}
+.postBody h4{font-size:15px!important;color:#314659}
+.postBody p{margin:17px auto}
+.postBody hr{border:none;border-bottom:1px solid #EEF2F8}
+.postBody blockquote{border:none;color:#61687C;margin:20px 0;padding:0 0 0 10px;min-height:20px;background:0 0;border-left:4px solid #FFC6DE}
+.postBody table{border-collapse:collapse;border-spacing:0;border:1px solid #fbdfeb;width:100%;margin-bottom:24px}
+.postBody table th{background:#f9f9f9!important;font-weight:600;border:1px solid #fbdfeb!important;padding:8px 16px!important}
+.postBody table td{border:1px solid #fbdfeb!important;padding:8px 16px!important}
+.postBody h1 code,.postBody h2 code,.postBody h3 code,.postBody h4 code,.postBody p code{color:#61687C;font-family:consolas!important;background:#fbfbfb!important;font-size:14px!important;padding:.2em .3em!important;border-radius:3px!important;border:1px solid #eee!important}
+
+/* Code blocks */
+.cnblogs_code{background:#F2F4F5;padding:1em;border:none!important;border-radius:3px!important;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace!important;position:relative;overflow-x:auto}
+.cnblogs_code pre{color:#656c73;font-family:inherit!important;margin:0;white-space:pre-wrap;word-break:break-all}
+.esa-clipboard-button{position:absolute;right:8px;top:8px;font-size:12px;cursor:pointer;box-shadow:0 0 15px 0 rgba(0,0,0,.1);color:#5e6687;padding:0 8px;border-radius:5px;background:#fff;border:1px solid #ddd;z-index:99}
+.esa-clipboard-button:hover{background:#FE9600;color:#fff;border-color:#FE9600}
+.code-table{width:100%;border-collapse:collapse;font-family:inherit}
+.code-table td{padding:1px 8px;vertical-align:top}
+.code-table .ln{color:#BBB;text-align:right;min-width:46px;user-select:none;border-right:1px solid #E8E8E8;font-size:12px}
+.code-table .code{color:#656c73;font-size:13px}
+.code-table .anno{color:#FE9600;font-size:12px;font-style:italic;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+.code-table tr:nth-child(even){background:rgba(0,0,0,.008)}
+.code-table tr:hover{background:rgba(254,150,0,.04)}
+
+/* File block for code pages */
+.file-block{margin:20px 0}
+.file-block-title{font-size:14px;font-weight:600;color:#61687C;padding:8px 15px;background:#fbfbfb;border:1px solid #eee;border-bottom:none;border-radius:3px 3px 0 0}
+.file-block .cnblogs_code{border-radius:0 0 3px 3px!important}
+
+/* Catalog */
+.esa-catalog{position:fixed;top:120px;right:10px;z-index:999;max-width:200px}
+.esa-catalog-title{cursor:pointer;padding:6px 12px;border-bottom:1px solid #EEF2F8;font-size:14px;font-weight:600;background:rgba(255,255,255,.9);border-radius:4px 4px 0 0}
+.esa-catalog-title:before{content:'☰ ';margin-right:5px}
+.esa-catalog-contents{background:rgba(255,255,255,.92);border:1px solid #EEF2F8;border-radius:0 0 4px 4px;max-height:300px;overflow-y:auto;display:none}
+.esa-catalog-contents.show{display:block}
+.esa-catalog-contents ul{list-style:none;padding:8px 12px}
+.esa-catalog-contents li{margin:4px 0;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.esa-catalog-contents a{color:#61687C}
+.esa-catalog-contents a:hover{color:#FE9600}
+.level1{margin-left:0}.level2{margin-left:12px}.level3{margin-left:24px}
+
+/* Back to top */
+.cd-top{position:fixed;left:25px;top:-900px;z-index:99;width:70px;height:900px;background:url(https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808095655186-266655888.png) no-repeat center;background-size:contain;transition:all .5s ease-in-out;opacity:1}
+.cd-top.show{top:-326px}
+
+/* Back home link */
+.back-home{display:inline-block;margin:10px 0;font-size:14px;color:#61687C;text-decoration:none}
+.back-home:hover{color:#FE9600!important}
+.back-home:before{content:'← '}
+
+/* Footer */
+#footer{border-top:1px solid #EEF2F8;font-weight:300;z-index:9999;padding:20px 0 70px;text-align:center;font-size:13px;color:#969696}
+#footer a{color:#61687C}
+#footer:after{content:' ❤';color:#ef6b6b}
+
+/* Mobile menu */
+.esa-mobile-menu{display:none;position:fixed;top:7px;right:15px;z-index:941113;font-size:1.5em;cursor:pointer;color:#7f7f7f}
+.esa-mobile-menu:after{content:'☰'}
+#mo-nav{background:#FFF;width:250px;max-width:250px!important;height:100%;z-index:9999;position:fixed;top:0;left:-250px;display:block;overflow-y:auto;transition:transform .5s!important;padding-top:60px}
+#mo-nav.open{transform:translateX(250px)}
+#mo-nav a{display:block;padding:14px 24px;color:#61687C;font-size:15px;border-bottom:1px solid #f5f5f5;text-decoration:none}
+#mo-nav a:hover{color:#FE9600;background:#fafafa}
+#mo-nav .sub-mo{padding-left:36px!important;font-size:13px!important;background:#f9f9f9}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px;height:6px;background-color:#eee}
+::-webkit-scrollbar-thumb{border-radius:1px;background:#FE9600}
+::-webkit-scrollbar-track{background:0 0;border-radius:1px}
+::selection{color:#FE9600;background:#E5F4FE}
+
+/* Live2D */
+#live2d-widget{position:fixed;right:8px;bottom:8px;z-index:9999;pointer-events:none}
+#live2d-widget canvas{pointer-events:auto}
+
+/* ═══════════ Responsive ═══════════ */
+@media(max-width:1024px){
+  .forFlow{max-width:90%}
+  .post-thumb{width:45%;height:250px}
+  .post-content-wrap{width:55%}
+}
+@media(max-width:767px){
+  #header{height:60px;opacity:1!important;background:rgba(255,255,255,.92)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  #header #blogTitle h1{font-size:20px;margin-top:8px}
+  #header #navigator{display:none}
+  .site-branding{top:0;height:60px;line-height:54px}
+  .logolink.moe-mashiro a{font-size:20px;height:44px;line-height:44px}
+  .logolink .sakuraso,.logolink .no,.logolink .shironeko{font-size:20px}
+  .esa-mobile-menu{display:block}
+  .main-header{height:100vh}
+  .center-text{font-size:40px}
+  #main{margin:100vh auto 0;padding:0 4%!important}
+  .forFlow{margin:0;max-width:100%}
+  .post-list-thumb{margin:5% 0;padding:0;border:0;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+  .post-thumb,.post-content-wrap{width:100%;float:none!important}
+  .post-thumb{height:200px}
+  .post-content-wrap{padding:15px!important;margin:0!important}
+  .post-list-thumb-left .post-thumb a,.post-thumb a{border-radius:10px 10px 0 0!important}
+  .esa-catalog{display:none}
+  .cd-top{display:none}
+  .pattern-attachment-img{height:220px}
+  .entry-title{font-size:24px}
+  .code-table .anno{display:none}
+}
+@media(max-width:480px){
+  .center-text{font-size:32px}
+  .header-info{font-size:13px}
+  .main-header{height:65vh}
+  #main{margin:65vh auto 0}
+  .post-thumb{height:160px}
+  .code-table .ln{display:none}
+}

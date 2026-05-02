@@ -1,553 +1,161 @@
 <!DOCTYPE html><html lang="zh-CN">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>🌸 oyz_blog</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/c.min.js"></script>
-<style>/* ═══ Sakura Theme (CNblogs-Theme-Sakura exact) ═══ */
-body {
-    cursor: url(https://files-cdn.cnblogs.com/files/zouwangblog/cursor.ico), auto;
-    background: #fff;
-    color: #314659;
-    min-height: 100% !important;
-    font-family: Lato, "PingFang SC", "Microsoft YaHei", sans-serif !important;
-}
-body::before {
-    background: url(https://img2018.cnblogs.com/blog/1646268/201907/1646268-20190709145111387-899901278.jpg) center/cover no-repeat;
-}
-body:before {
-    content: '';
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.05;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    z-index: -1;
-}
-* { box-sizing: border-box; }
-a {
-    transition: all .3s ease !important;
-    color: #61687C;
-}
-a:hover { color: #FE9600 !important; text-decoration: none !important; }
-
-/* Header */
-#header {
-    position: fixed; top: 0; right: 0; left: 0; margin: 0 auto;
-    border-top: 0; background: #fff;
-    border-bottom: 0px #ffebf2 solid;
-    padding-bottom: 0; width: 100%; height: 75px;
-    z-index: 999; opacity: 0; transition: all .4s ease;
-}
-#header.visible { opacity: 1; }
-#header #blogTitle {
-    position: absolute;
-}
-#header #blogTitle h1 {
-    font-size: 25px; font-family: Georgia; width: auto;
-    margin-left: 0; margin-top: 12px; padding-left: 15px;
-}
-#header #blogTitle h1 a { color: #61687C; }
-#header #navigator {
-    height: inherit; top: 0; background-color: transparent; z-index: 999;
-}
-#header #navList {
-    height: inherit; width: 100%; display: flex; align-items: center;
-    justify-content: flex-end; margin-left: 100px;
-    transition: all .4s ease; padding-right: 1%; list-style: none;
-}
-#header #navList li { position: relative; }
-#header #navList li:hover i { width: 100%; left: 0; }
-#header #navList li i {
-    width: 0; height: 4px; background-color: #FE9600; content: "";
-    position: absolute; left: 50%; bottom: 0; transition: 1s;
-}
-#header #navList a:active, #header #navList a:link, #header #navList a:visited {
-    font-size: 16px; border-right: 0; color: #61687C; display: block;
-    font-weight: 300; padding: 28px 0; height: inherit;
-    -webkit-transition: all .3s; transition: all .3s;
-}
-#header #navList a:hover { background: 0 0; }
-
-/* Main */
-#main {
-    margin: 100vh auto 0; min-height: 750px;
-    animation-name: fadeIn; animation-duration: 1s; animation-iteration-count: 1;
-    z-index: 9999; min-width: 0px !important;
-}
-#mainContent { background-color: transparent; }
-#mainContent .forFlow { margin: 0 auto; max-width: 800px; }
-
-/* Post */
-.post .postTitle {
-    font-size: 25px !important; font-weight: 300 !important;
-    padding-left: 15px !important; border-bottom: none !important;
-}
-.post .postTitle a { color: #61687C; }
-.post .postBody {
-    font-weight: 300; font-size: 15px; padding: 5px 15px;
-    line-height: 1.7; color: #61687C; border-bottom: 1px solid #EEF2F8;
-}
-.post .postBody a:active, .post .postBody a:link, .post .postBody a:visited {
-    color: #e67474; position: relative; text-decoration: none;
-}
-.post .postBody a:hover { color: orange; text-decoration: none; }
-.post .postBody a:after {
-    content: ''; position: absolute; width: 100%; transform: scaleX(0);
-    height: 2px; bottom: 0; left: 0; background-color: orange;
-    transform-origin: bottom right; transition: transform .25s ease-out;
-}
-.post .postBody a:hover:after {
-    transform: scaleX(1); transform-origin: bottom left;
-}
-.post .postBody h1 { font-size: 21px !important; color: #61687C; }
-.post .postBody h3, .post .postBody h5 { font-size: 17px !important; color: #314659; }
-.post .postBody h4 { font-size: 15px !important; color: #314659; }
-.post .postBody p { margin: 17px auto; }
-.post .postBody hr { border: none; border-bottom: 1px solid #EEF2F8; }
-.post .postBody blockquote {
-    border: none; color: #61687C; margin: 20px 0; padding: 0 0 0 10px;
-    min-height: 20px; background: 0 0; border-left: 4px solid #FFC6DE;
-}
-.post .postBody em { padding-right: 3px; }
-.post .postBody strong { margin: 0 3px; }
-.post .postBody img {
-    max-width: 930px !important; display: block; margin: 30px auto; border-radius: 3px;
-}
-.post .postBody ol li, .post .postBody ul li {
-    margin: 3px 0; font-size: 15px; color: #61687C;
-}
-.post .postBody ol li p, .post .postBody ul li p { margin: 0 !important; }
-.post .postBody table {
-    font-size: 13px; border-collapse: collapse; border-spacing: 0;
-    empty-cells: show; border: 1px solid #fbdfeb; width: 100%; margin-bottom: 24px;
-}
-.post .postBody table th {
-    font-family: inherit; font-size: inherit; background: #f9f9f9 !important;
-    white-space: nowrap; font-weight: 600; border: 1px solid #fbdfeb !important;
-    padding: 8px 16px !important;
-}
-.post .postBody table td {
-    border: 1px solid #fbdfeb !important; padding: 8px 16px !important;
-}
-.post .postBody h1 code, .post .postBody h2 code, .post .postBody h3 code,
-.post .postBody h4 code, .post .postBody h5 code, .post .postBody h6 code,
-.post .postBody li code, .post .postBody p code, .post .postBody table code {
-    color: #61687C; line-height: 1; font-family: consolas !important;
-    vertical-align: middle; margin: 0 3px; background: #fbfbfb !important;
-    font-size: 14px !important; padding: .2em .3em !important;
-    border-radius: 3px !important; border: 1px solid #eee !important;
-}
-
-/* Code blocks */
-.cnblogs_code {
-    background-color: #f2f4f5; padding-left: 1em; padding-right: 1em;
-    border: none !important; border-radius: 3px !important;
-    font-family: Lucida Console, Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace !important;
-}
-.cnblogs_code div { background-color: transparent; color: #656c73; }
-.cnblogs_code img { margin: 0 !important; }
-.cnblogs_code pre { color: #656c73; font-family: inherit !important; }
-.cnblogs_code pre span { font-family: inherit !important; color: inherit !important; }
-
-/* Code syntax colors (Sakura exact) */
-.hljs { display: block; color: #333; overflow-x: auto; background: #F2F4F5 !important;
-    border: none !important; font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important;
-    padding: 1em !important; font-size: 14px !important; }
-.hljs-comment, .hljs-meta { color: #969896; }
-.hljs-string, .hljs-emphasis, .hljs-quote, .hljs-strong, .hljs-template-variable, .hljs-variable { color: #df5000; }
-.hljs-keyword, .hljs-selector-tag, .hljs-type { color: #a71d5d; }
-.hljs-attribute, .hljs-bullet, .hljs-literal, .hljs-symbol { color: #0086b3; }
-.hljs-name, .hljs-section { color: #63a35c; }
-.hljs-tag { color: #333; }
-.hljs-attr, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-id,
-.hljs-selector-pseudo, .hljs-title { color: #795da3; }
-.hljs-addition { color: #55a532; background-color: #eaffea; }
-.hljs-deletion { color: #bd2c00; background-color: #ffecec; }
-.hljs-link { text-decoration: underline; }
-
-/* Footer */
-#footer {
-    border-top: 1px solid #EEF2F8; font-weight: 300; z-index: 9999;
-    padding-bottom: 70px;
-}
-#footer div { margin: 5px auto; }
-#footer a { color: #61687C; }
-#footer:after { content: '❤'; color: #ef6b6b; font-size: 16px; }
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 6px; height: 6px; background-color: #eee; }
-::-webkit-scrollbar-thumb { border-radius: 1px; background: #FE9600; }
-::-webkit-scrollbar-track { background: 0 0; border-radius: 1px; }
-::selection { color: #FE9600; background: #E5F4FE; }
-::-moz-selection { color: #FE9600; background: #E5F4FE; }
-
-/* @keyframes */
-@keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
-
-/* Main header (hero) */
-.main-header {
-    display: table; width: 100%; height: 100vh; max-height: 100vh;
-    text-align: center;
-    background-image: url(https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190806114008215-138720377.jpg);
-    background-repeat: no-repeat; background-size: cover;
-    background-position: center; overflow: hidden;
-    position: absolute; top: 0; left: 0; z-index: -1;
-    box-shadow: 0 1px 2px rgba(150, 150, 150, .7);
-}
-.headertop {
-    overflow: hidden; height: 0;
-}
-.headertop:before {
-    content: ''; position: absolute; top: 0; bottom: 0; left: 0; right: 0;
-    z-index: 3; background-attachment: fixed;
-}
-.headertop.filter-dot:before {
-    background-image: url(https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190806130657359-228955661.png);
-}
-
-/* Center text */
-.focusinfo {
-    position: absolute; max-width: 800px; padding: 0 10px; width: 95%;
-    top: 49.3%; left: 50%; transform: translate(-50%, -50%);
-    text-align: center; z-index: 99;
-}
-.center-text {
-    margin: auto; font-family: 'Ubuntu', sans-serif; font-size: 80px;
-    text-transform: uppercase; font-weight: 800;
-}
-.glitch {
-    position: relative; color: #fff; mix-blend-mode: lighten; overflow: hidden;
-}
-.header-info {
-    margin: auto; font-size: 16px; color: #eaeadf;
-    background: rgba(0, 0, 0, .5); padding: 15px; margin-top: 22px;
-    letter-spacing: 0; line-height: 30px; border-radius: 10px;
-    box-sizing: initial; white-space: nowrap;
-}
-.header-info:before {
-    content: ""; position: absolute; top: 98px; left: 20%;
-    margin-left: -15px; border-width: 15px; border-style: solid;
-    border-color: transparent transparent rgba(0, 0, 0, .5) transparent;
-}
-.header-info p { margin: 0; font-family: 'Ubuntu', sans-serif; font-weight: 700;
-    overflow: hidden; text-overflow: ellipsis; }
-
-/* Scroll down arrow */
-.scroll-down {
-    display: block; position: absolute; bottom: 80px; left: 50%;
-    margin-left: -16px; width: 34px; height: 34px; font-size: 34px;
-    text-align: center; animation: float 2s linear infinite;
-    text-decoration: none !important; color: white !important; z-index: 1000;
-}
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-    100% { transform: translateY(0); }
-}
-
-/* Catalog (right sidebar) */
-.esa-catalog {
-    position: fixed; top: 120px; right: 1px; width: auto; height: auto;
-    z-index: 999; opacity: 0.8;
-}
-.esa-catalog-title {
-    cursor: move; padding-left: 12px; width: 100%; height: 35px;
-    line-height: 36px; border-bottom: 1px solid #EEF2F8;
-    font-size: 14px; font-weight: 600;
-}
-.esa-catalog-title:before { content: '☲'; margin-right: 5px; }
-.esa-catalog-contents {
-    overflow: hidden; display: none; color: #61687C;
-    border: 1px solid #EEF2F8; min-width: 150px; opacity: 1;
-    font-size: inherit; background-color: transparent; z-index: 19941112;
-}
-.esa-catalog-contents.show { display: block; }
-.esa-catalog-contents ul {
-    padding: 10px 15px; max-height: 350px; overflow-y: auto; list-style: none;
-}
-.esa-catalog-contents ul li {
-    margin-top: 5px; max-width: 170px; white-space: nowrap; overflow: hidden;
-    text-overflow: ellipsis; cursor: pointer; color: #34495e;
-}
-.esa-catalog-contents ul li a { color: #34495e; }
-.esa-catalog-contents ul li a:hover { color: #FE9600; text-decoration: none; }
-.esa-catalog-contents ul li .level1 { margin-left: 0; }
-.esa-catalog-contents ul li .level2 { margin-left: 10px; }
-.esa-catalog-contents ul li .level3 { margin-left: 26px; }
-
-/* Mobile nav */
-.esa-mobile-menu {
-    display: none; position: fixed; top: 7px; right: 15px; z-index: 941113;
-    font-size: 1.5em; cursor: pointer; color: #7f7f7f;
-}
-.esa-mobile-menu:after { content: '\2630'; font-size: 1.5em; }
-
-/* Wave */
-.wave { position: absolute; height: 110px; width: 100%; overflow: hidden; bottom: 0; z-index: 99; }
-.wave #banner_wave_1, .wave #banner_wave_2 {
-    position: absolute; width: 200%; height: 100%; background-size: 50% 100%;
-}
-.wave #banner_wave_1 {
-    top: 20px; left: -100%; opacity: 1; animation: water-right 20s infinite linear;
-    background: url(https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807133952249-1243696775.png) repeat-x;
-}
-.wave #banner_wave_2 {
-    top: 30px; left: 0; opacity: 1; animation: water-left 30s infinite linear;
-    background: url(https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807133945197-1434861417.png) repeat-x;
-}
-@keyframes water-right {
-    0% { transform: translateX(0) translateZ(0) scaleY(1); }
-    50% { transform: translateX(25%) translateZ(0) scaleY(0.85); }
-    100% { transform: translateX(50%) translateZ(0) scaleY(1); }
-}
-@keyframes water-left {
-    from { transform: translate(0%, 0px); }
-    to { transform: translate(-50%, 0px); }
-}
-
-/* Post list cards */
-.post-list-thumb {
-    float: left; width: 100%; height: 300px; position: relative;
-    margin: 20px 0 20px; border-radius: 10px; background-color: rgba(255, 255, 255, 0);
-    box-shadow: 0 1px 20px -6px rgba(0, 0, 0, .5); transition: box-shadow .3s ease;
-}
-@media (min-width: 768px) {
-    .post-list-thumb:hover { box-shadow: 0 5px 10px 5px rgba(110, 110, 110, .4); }
-}
-.post-list-thumb i { margin-right: 5px; color: #989898; font-size: 14px; }
-.post-list-thumb a { color: #504e4e; }
-.post-content .post-title {
-    text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2; overflow: hidden; word-wrap: break-word;
-    font-size: 18px; margin: 15px 0; font-weight: 600;
-}
-.post-date, .post-meta, .post-meta a { color: #888; font-size: 12px; }
-.post-thumb {
-    position: relative; float: right; width: 55%;
-}
-.post-thumb a {
-    height: 300px; position: absolute; display: block;
-    background-repeat: no-repeat; background-size: cover; overflow: hidden;
-    border-radius: 0 10px 10px 0;
-}
-.post-thumb a img {
-    width: 100%; height: 100%; object-fit: cover; pointer-events: none;
-    transition: all .6s;
-}
-.post-list-thumb:hover img { transform: scale(1.1); }
-.post-content-wrap {
-    position: relative; display: inline-block; float: left;
-    padding-right: 30px; padding-left: 0; width: 36%; margin: 20px 30px 0;
-}
-.float-content {
-    position: relative; width: 100%; right: 0; margin: 0; padding: 0;
-    z-index: 50; color: rgba(0, 0, 0, .66);
-}
-.float-content .post-text {
-    display: inline-block; text-align: justify; font-size: 14px;
-}
-.float-content p {
-    display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5;
-    height: 67.5px; overflow: hidden; margin: 20px 0px 40px; line-height: 25px;
-}
-
-/* Animations */
-.notice, .top-feature, .post-list-thumb, .post-list, .comments { animation: main .6s; }
-@keyframes main {
-    0% { opacity: 0; transform: translateY(50px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsive */
-@media only screen and (max-width: 767px) {
-    #sideBar, .esa-catalog, .postDesc { display: none; }
-    .postBody { padding: 0 !important; }
-    #main { margin-top: 100vh; padding: 0 15px !important; }
-    #topics .postTitle { padding-left: 0 !important; padding-top: 10px; }
-    #cnblogs_post_body table { display: table !important; }
-    #cnblogs_post_body img { width: 100%; max-width: none !important; }
-    .esa-mobile-menu { display: block; }
-    .forFlow { margin-right: 0; margin-left: 0 !important; }
-    .post-list-thumb { margin: 5% 0; height: auto; padding: 0; border: 0; }
-    .post-thumb, .post-content-wrap, .float-content { width: 100%; left: 0; }
-    .post-thumb { display: none; }
-    .post-list-thumb .post-content-wrap {
-        text-align: left !important; margin: 0 !important;
-        padding: 15px 15px 0px 15px !important; float: none !important;
-    }
-}
-@media only screen and (max-width: 410px) {
-    #div_digg { display: grid; width: 100%; }
-}
-
-/* Custom additions for oyz_blog */
-.layer-title {
-    font-size: 21px !important; color: #61687C; font-family: Georgia, serif;
-    margin: 30px 0 15px; padding-bottom: 8px; border-bottom: 1px solid #EEF2F8;
-}
-.file-block {
-    margin: 10px 0 25px;
-}
-.file-block-title {
-    font-size: 14px; font-weight: 600; color: #61687C;
-    padding: 8px 15px; background: #fbfbfb;
-    border: 1px solid #eee; border-bottom: none; border-radius: 3px 3px 0 0;
-}
-.file-block .cnblogs_code {
-    border-radius: 0 0 3px 3px !important; margin-top: 0;
-}
-.code-table { width: 100%; border-collapse: collapse; font-family: Consolas, Monaco, monospace; }
-.code-table td { padding: 1px 8px; vertical-align: top; }
-.code-table .ln {
-    color: #BBB; text-align: right; min-width: 46px; user-select: none;
-    border-right: 1px solid #E8E8E8; font-size: 12px;
-}
-.code-table .code { color: #656c73; font-size: 13px; }
-.code-table .anno {
-    color: #FE9600; font-size: 12px; font-style: italic;
-    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-}
-.code-table tr:nth-child(even) { background: rgba(0,0,0,0.008); }
-.code-table tr:hover { background: rgba(254,150,0,0.03); }
-
-.back-home {
-    display: inline-block; margin-bottom: 20px; font-size: 14px;
-}
-.card-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 16px;
-}
-.card-grid a { text-decoration: none; }
-.sakura-card {
-    display: block; padding: 24px; background: #fff; border: 1px solid #EEF2F8;
-    border-radius: 3px; transition: all .3s ease; color: #61687C;
-}
-.sakura-card:hover {
-    border-color: #FFC6DE; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    transform: translateY(-2px);
-}
-.sakura-card h3 {
-    font-family: Georgia, serif; font-size: 18px; color: #61687C; margin-bottom: 6px;
-}
-.sakura-card p { font-size: 13px; color: #888; margin: 4px 0; }
-.sakura-card .count { color: #FE9600; font-weight: 600; margin-top: 8px; }
-
-/* Live2D */
-#live2d-widget { position: fixed; right: 8px; bottom: 8px; z-index: 9999; pointer-events: none; }
-#live2d-widget canvas { pointer-events: auto; }
-
-#mo-nav {
-    background-color: #FFF; width: 250px; max-width: 250px !important;
-    height: 100%; z-index: 9999; position: fixed; top: 0; left: -250px;
-    display: block; overflow-x: hidden !important; overflow-y: auto;
-    transition: background, transform .5s !important;
-}
-#mo-nav.open { transform: translateX(250px); }
-#mo-nav a {
-    display: block; padding: 14px 24px; color: #61687C; font-size: 15px;
-    border-bottom: 1px solid #f5f5f5;
-}
-#mo-nav a:hover { color: #FE9600; background: #fafafa; }
-</style></head>
-<body>
-<div class="main-header">
+<title>🌸 oyz blog</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="style.css">
+</head><body><div class="site-branding"><span class="logolink moe-mashiro"><a href="index.html">
+<ruby><span class="sakuraso">oyz</span><span class="no">の</span><span class="shironeko">blog</span>
+<rt class="chinese-font">代码注释站</rt></ruby></a></span></div>
+<header id="header" class="">
+  <div id="blogTitle"><h1><a href="index.html">🌸 oyz blog</a></h1></div>
+  <div id="navigator"><ul id="navList"><li><a href="index.html"><i class="fa fa-fort-awesome" aria-hidden="true"></i> Home</a><i></i></li>
+<li><a href="layer_0.html"><i class="fa fa-cube" aria-hidden="true"></i> 第1层</a><i></i></li>
+<li><a href="layer_1.html"><i class="fa fa-cubes" aria-hidden="true"></i> 第2层</a><i></i></li>
+<li><a href="layer_2.html"><i class="fa fa-cogs" aria-hidden="true"></i> 第3层</a><i></i></li>
+<li><a href="layer_3.html"><i class="fa fa-microchip" aria-hidden="true"></i> 第4层</a><i></i></li>
+<li><a href="layer_4.html"><i class="fa fa-sliders" aria-hidden="true"></i> 第5层</a><i></i></li>
+<li><a href="layer_5.html"><i class="fa fa-server" aria-hidden="true"></i> 第6层</a><i></i></li>
+<li><a href="layer_6.html"><i class="fa fa-star" aria-hidden="true"></i> 第7层</a><i></i></li>
+<li><a href="#"><i class="fa fa-leaf" aria-hidden="true"></i> 关于</a><i></i>
+<ul class="sub-menu">
+<li><a href="https://github.com/avavyes3-cmd/oyz-blog"><i class="fa fa-github"></i> GitHub</a></li>
+<li><a href="https://oyz-blog.vercel.app"><i class="fa fa-globe"></i> Vercel</a></li>
+</ul></li></ul></div>
+</header>
+<div class="esa-mobile-menu"></div>
+<nav id="mo-nav">
+  <a href="index.html"><i class="fa fa-fort-awesome"></i> Home</a>
+  <a href="index.html"><i class="fa fa-fort-awesome"></i> Home</a>
+  <a href="layer_0.html"><i class="fa fa-cube"></i> 第1层</a>
+  <a href="layer_1.html"><i class="fa fa-cubes"></i> 第2层</a>
+  <a href="layer_2.html"><i class="fa fa-cogs"></i> 第3层</a>
+  <a href="layer_3.html"><i class="fa fa-microchip"></i> 第4层</a>
+  <a href="layer_4.html"><i class="fa fa-sliders"></i> 第5层</a>
+  <a href="layer_5.html"><i class="fa fa-server"></i> 第6层</a>
+  <a href="layer_6.html"><i class="fa fa-star"></i> 第7层</a>
+  <a href="https://github.com/avavyes3-cmd/oyz-blog"><i class="fa fa-github"></i> GitHub</a>
+</nav>
 <div class="headertop filter-dot"></div>
+<div class="main-header" style="background-image:url(https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190806172418911-2037584311.jpg)"></div>
 <div class="focusinfo">
-  <h1 class="center-text glitch" data-text="oyz_blog">oyz_blog</h1>
-  <div class="header-info"><p>🌸 TI 竞赛智能车 · 2024-H 代码注释 · 七层架构 · 103 文件</p></div>
+  <h1 class="center-text">oyz blog</h1>
+  <div class="header-info"><p>🌸 TI 竞赛智能车 · 2024-H 代码注释 · 逐行中文注释</p>
+    <div class="top-social_v2">
+      <li id="bg-pre"><img class="flipx" src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808103709869-648245711.png"></li>
+      <li><a href="https://github.com/avavyes3-cmd/oyz-blog" target="_blank" title="GitHub"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808095618459-218538626.png"></a></li>
+      <li id="bg-next"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190808103709869-648245711.png"></li>
+    </div>
+  </div>
 </div>
 <div class="wave"><div id="banner_wave_1"></div><div id="banner_wave_2"></div></div>
-<a href="#main" class="scroll-down">▼</a>
-</div>
-<header id="header">
-  <div id="blogTitle"><h1><a href="index.html">🌸 oyz_blog</a></h1></div>
-  <div id="navigator"><ul id="navList">
-    <li><a href="index.html">Home</a><i></i></li>
-    <li><a href="layer-1.html">第1层</a><i></i></li><li><a href="layer-2.html">第2层</a><i></i></li><li><a href="layer-3.html">第3层</a><i></i></li><li><a href="layer-4.html">第4层</a><i></i></li><li><a href="layer-5.html">第5层</a><i></i></li><li><a href="layer-6.html">第6层</a><i></i></li><li><a href="layer-7.html">第7层</a><i></i></li>
-    <li><a href="https://github.com/avavyes3-cmd/oyz-blog" target="_blank">GitHub</a><i></i></li>
-  </ul></div>
-  <div class="esa-mobile-menu" onclick="toggleMoNav()"></div>
-</header>
-<div id="mo-nav">
-  <a href="index.html">🏠 首页</a>
-  <a href="layer-1.html">📁 第1层</a><a href="layer-2.html">📁 第2层</a><a href="layer-3.html">📁 第3层</a><a href="layer-4.html">📁 第4层</a><a href="layer-5.html">📁 第5层</a><a href="layer-6.html">📁 第6层</a><a href="layer-7.html">📁 第7层</a>
-</div>
+<div class="scroll-down"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+<script>window._homeTopImgs=["https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190806172418911-2037584311.jpg","https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190828104950450-644943924.jpg"];</script>
 <div id="main"><div id="mainContent"><div class="forFlow">
-<script>
-window.addEventListener('scroll', function() {
-  var h = document.getElementById('header');
-  if (h) h.classList.toggle('visible', window.scrollY > 100);
-});
-function toggleMoNav() { document.getElementById('mo-nav').classList.toggle('open'); }
-</script>
-<div class="post"><div class="postBody">
-<h1>📚 代码架构</h1>
-<p>基于 MSPM0G3507 平台 · 103 个源文件 · 所有代码均带有逐行中文注释</p>
-<p>点击卡片进入对应层级的代码注释页面：</p>
-<div class="card-grid"><a href="layer-1.html"><div class="sakura-card">
-<h3>🌸 第1层</h3><p>第一层 & 第二层: 标准库层 + 硬件抽象层 (HAL)</p>
-<p style="font-size:12px;color:#989898">标准C库 + 芯片驱动配置，提供基础类型和芯片初始化</p>
-<p class="count">📁 8 个文件</p>
-</div></a><a href="layer-2.html"><div class="sakura-card">
-<h3>🌸 第2层</h3><p>第三层: 设备驱动层 - 编码器</p>
-<p style="font-size:12px;color:#989898">对UART/I2C/SPI/ADC外设的薄封装，隔离芯片差异</p>
-<p class="count">📁 4 个文件</p>
-</div></a><a href="layer-3.html"><div class="sakura-card">
-<h3>🌸 第3层</h3><p>第三层: 设备驱动层 - 灰度检测</p>
-<p style="font-size:12px;color:#989898">传感器/执行器/通信/显示的具体驱动，含平台适配层</p>
-<p class="count">📁 6 个文件</p>
-</div></a><a href="layer-4.html"><div class="sakura-card">
-<h3>🌸 第4层</h3><p>第三层: 设备驱动层 - 陀螺仪/测距</p>
-<p style="font-size:12px;color:#989898">通信协议栈 + 传感器融合算法 + OLED菜单UI系统</p>
-<p class="count">📁 11 个文件</p>
-</div></a><a href="layer-5.html"><div class="sakura-card">
-<h3>🌸 第5层</h3><p>第三层: 设备驱动层 - 电机执行器</p>
-<p style="font-size:12px;color:#989898">PID算法 + 小车状态机 + 运动控制器</p>
-<p class="count">📁 5 个文件</p>
-</div></a><a href="layer-6.html"><div class="sakura-card">
-<h3>🌸 第6层</h3><p>第三层: 设备驱动层 - 声光报警</p>
-<p style="font-size:12px;color:#989898">系统定时器 + 任务调度器 + 日志 + 中断服务</p>
-<p class="count">📁 6 个文件</p>
-</div></a><a href="layer-7.html"><div class="sakura-card">
-<h3>🌸 第7层</h3><p>第三层: 设备驱动层 - 通信</p>
-<p style="font-size:12px;color:#989898">main.c + 小车控制器 + 任务调度表 + UI应用 (核心)</p>
-<p class="count">📁 4 个文件</p>
-</div></a><a href="layer-8.html"><div class="sakura-card">
-<h3>🌸 第8层</h3><p>第三层: 设备驱动层 - 显示与IO扩展</p>
-<p style="font-size:12px;color:#989898"></p>
-<p class="count">📁 6 个文件</p>
-</div></a><a href="layer-9.html"><div class="sakura-card">
-<h3>🌸 第9层</h3><p>第四层: 中间件层 - 通信协议</p>
-<p style="font-size:12px;color:#989898"></p>
-<p class="count">📁 11 个文件</p>
-</div></a><a href="layer-10.html"><div class="sakura-card">
-<h3>🌸 第10层</h3><p>第四层: 中间件层 - 传感器融合</p>
-<p style="font-size:12px;color:#989898"></p>
-<p class="count">📁 6 个文件</p>
-</div></a><a href="layer-11.html"><div class="sakura-card">
-<h3>🌸 第11层</h3><p>第四层: 中间件层 - UI系统</p>
-<p style="font-size:12px;color:#989898"></p>
-<p class="count">📁 9 个文件</p>
-</div></a><a href="layer-12.html"><div class="sakura-card">
-<h3>🌸 第12层</h3><p>第五层: 应用组件层 - PID & 小车控制</p>
-<p style="font-size:12px;color:#989898"></p>
-<p class="count">📁 9 个文件</p>
-</div></a><a href="layer-13.html"><div class="sakura-card">
-<h3>🌸 第13层</h3><p>第六层: 核心系统层</p>
-<p style="font-size:12px;color:#989898"></p>
-<p class="count">📁 12 个文件</p>
-</div></a><a href="layer-14.html"><div class="sakura-card">
-<h3>🌸 第14层</h3><p>第七层: 应用层 - 2024-H 年度任务 ★★★</p>
-<p style="font-size:12px;color:#989898"></p>
-<p class="count">📁 6 个文件</p>
-</div></a></div>
-</div></div></div></div></div>
-<footer id="footer"><div><p>🌸 oyz_blog · Sakura Theme · 2024-H 代码注释</p></div></footer>
+<div class="notice"><i class="fa fa-volume-up"></i> 海上月是天上月，眼前人是心上人。这里是 TI 竞赛智能车 2024-H 代码注释站，共 103 个源文件。</div>
+<section class="post"><article class="post-list-thumb">
+<div class="post-thumb"><a href="layer_0.html"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807151151330-1121103170.png" alt=""></a></div>
+<div class="post-content-wrap">
+<div class="post-date"><i class="fa fa-calendar"></i> 2024-H</div>
+<h2 class="post-title"><a href="layer_0.html">第一层 &amp; 第二层: 标准库层 + 硬件抽象层 (HAL)</a></h2>
+<div class="post-meta"><span><i class="fa fa-file-code-o"></i> 8 文件</span><span><i class="fa fa-tag"></i> MSPM0G3507</span></div>
+<div class="float-content"><p>标准C库 + 芯片驱动配置，提供基础类型和芯片初始化</p></div>
+</div></article><article class="post-list-thumb post-list-thumb-left">
+<div class="post-thumb"><a href="layer_1.html"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807151203983-873040918.jpg" alt=""></a></div>
+<div class="post-content-wrap">
+<div class="post-date"><i class="fa fa-calendar"></i> 2024-H</div>
+<h2 class="post-title"><a href="layer_1.html">第三层: 设备驱动层 - 编码器</a></h2>
+<div class="post-meta"><span><i class="fa fa-file-code-o"></i> 4 文件</span><span><i class="fa fa-tag"></i> MSPM0G3507</span></div>
+<div class="float-content"><p>传感器/执行器/通信/显示的具体驱动，含平台适配层</p></div>
+</div></article><article class="post-list-thumb">
+<div class="post-thumb"><a href="layer_2.html"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807151151330-1121103170.png" alt=""></a></div>
+<div class="post-content-wrap">
+<div class="post-date"><i class="fa fa-calendar"></i> 2024-H</div>
+<h2 class="post-title"><a href="layer_2.html">第三层: 设备驱动层 - 灰度检测</a></h2>
+<div class="post-meta"><span><i class="fa fa-file-code-o"></i> 6 文件</span><span><i class="fa fa-tag"></i> MSPM0G3507</span></div>
+<div class="float-content"><p>通信协议栈 + 传感器融合算法 + OLED菜单UI系统</p></div>
+</div></article><article class="post-list-thumb post-list-thumb-left">
+<div class="post-thumb"><a href="layer_3.html"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807151203983-873040918.jpg" alt=""></a></div>
+<div class="post-content-wrap">
+<div class="post-date"><i class="fa fa-calendar"></i> 2024-H</div>
+<h2 class="post-title"><a href="layer_3.html">第三层: 设备驱动层 - 陀螺仪/测距</a></h2>
+<div class="post-meta"><span><i class="fa fa-file-code-o"></i> 11 文件</span><span><i class="fa fa-tag"></i> MSPM0G3507</span></div>
+<div class="float-content"><p>对UART/I2C/SPI/ADC外设的薄封装，隔离芯片差异</p></div>
+</div></article><article class="post-list-thumb">
+<div class="post-thumb"><a href="layer_4.html"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807151151330-1121103170.png" alt=""></a></div>
+<div class="post-content-wrap">
+<div class="post-date"><i class="fa fa-calendar"></i> 2024-H</div>
+<h2 class="post-title"><a href="layer_4.html">第三层: 设备驱动层 - 电机执行器</a></h2>
+<div class="post-meta"><span><i class="fa fa-file-code-o"></i> 5 文件</span><span><i class="fa fa-tag"></i> MSPM0G3507</span></div>
+<div class="float-content"><p>PID算法 + 小车状态机 + 运动控制器的可复用组件</p></div>
+</div></article><article class="post-list-thumb post-list-thumb-left">
+<div class="post-thumb"><a href="layer_5.html"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807151203983-873040918.jpg" alt=""></a></div>
+<div class="post-content-wrap">
+<div class="post-date"><i class="fa fa-calendar"></i> 2024-H</div>
+<h2 class="post-title"><a href="layer_5.html">第三层: 设备驱动层 - 声光报警</a></h2>
+<div class="post-meta"><span><i class="fa fa-file-code-o"></i> 6 文件</span><span><i class="fa fa-tag"></i> MSPM0G3507</span></div>
+<div class="float-content"><p>系统定时器 + 任务调度器 + 日志 + 中断服务</p></div>
+</div></article><article class="post-list-thumb">
+<div class="post-thumb"><a href="layer_6.html"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807151151330-1121103170.png" alt=""></a></div>
+<div class="post-content-wrap">
+<div class="post-date"><i class="fa fa-calendar"></i> 2024-H</div>
+<h2 class="post-title"><a href="layer_6.html">第三层: 设备驱动层 - 通信</a></h2>
+<div class="post-meta"><span><i class="fa fa-file-code-o"></i> 4 文件</span><span><i class="fa fa-tag"></i> MSPM0G3507</span></div>
+<div class="float-content"><p>main.c + 小车控制器 + 任务调度表 + UI应用 (核心)</p></div>
+</div></article><article class="post-list-thumb post-list-thumb-left">
+<div class="post-thumb"><a href="layer_7.html"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807151203983-873040918.jpg" alt=""></a></div>
+<div class="post-content-wrap">
+<div class="post-date"><i class="fa fa-calendar"></i> 2024-H</div>
+<h2 class="post-title"><a href="layer_7.html">第三层: 设备驱动层 - 显示与IO扩展</a></h2>
+<div class="post-meta"><span><i class="fa fa-file-code-o"></i> 6 文件</span><span><i class="fa fa-tag"></i> MSPM0G3507</span></div>
+<div class="float-content"><p>6 个源文件，逐行中文注释</p></div>
+</div></article><article class="post-list-thumb">
+<div class="post-thumb"><a href="layer_8.html"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807151151330-1121103170.png" alt=""></a></div>
+<div class="post-content-wrap">
+<div class="post-date"><i class="fa fa-calendar"></i> 2024-H</div>
+<h2 class="post-title"><a href="layer_8.html">第四层: 中间件层 - 通信协议</a></h2>
+<div class="post-meta"><span><i class="fa fa-file-code-o"></i> 11 文件</span><span><i class="fa fa-tag"></i> MSPM0G3507</span></div>
+<div class="float-content"><p>11 个源文件，逐行中文注释</p></div>
+</div></article><article class="post-list-thumb post-list-thumb-left">
+<div class="post-thumb"><a href="layer_9.html"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807151203983-873040918.jpg" alt=""></a></div>
+<div class="post-content-wrap">
+<div class="post-date"><i class="fa fa-calendar"></i> 2024-H</div>
+<h2 class="post-title"><a href="layer_9.html">第四层: 中间件层 - 传感器融合</a></h2>
+<div class="post-meta"><span><i class="fa fa-file-code-o"></i> 6 文件</span><span><i class="fa fa-tag"></i> MSPM0G3507</span></div>
+<div class="float-content"><p>6 个源文件，逐行中文注释</p></div>
+</div></article><article class="post-list-thumb">
+<div class="post-thumb"><a href="layer_10.html"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807151151330-1121103170.png" alt=""></a></div>
+<div class="post-content-wrap">
+<div class="post-date"><i class="fa fa-calendar"></i> 2024-H</div>
+<h2 class="post-title"><a href="layer_10.html">第四层: 中间件层 - UI系统</a></h2>
+<div class="post-meta"><span><i class="fa fa-file-code-o"></i> 9 文件</span><span><i class="fa fa-tag"></i> MSPM0G3507</span></div>
+<div class="float-content"><p>9 个源文件，逐行中文注释</p></div>
+</div></article><article class="post-list-thumb post-list-thumb-left">
+<div class="post-thumb"><a href="layer_11.html"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807151203983-873040918.jpg" alt=""></a></div>
+<div class="post-content-wrap">
+<div class="post-date"><i class="fa fa-calendar"></i> 2024-H</div>
+<h2 class="post-title"><a href="layer_11.html">第五层: 应用组件层 - PID &amp; 小车控制</a></h2>
+<div class="post-meta"><span><i class="fa fa-file-code-o"></i> 9 文件</span><span><i class="fa fa-tag"></i> MSPM0G3507</span></div>
+<div class="float-content"><p>9 个源文件，逐行中文注释</p></div>
+</div></article><article class="post-list-thumb">
+<div class="post-thumb"><a href="layer_12.html"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807151151330-1121103170.png" alt=""></a></div>
+<div class="post-content-wrap">
+<div class="post-date"><i class="fa fa-calendar"></i> 2024-H</div>
+<h2 class="post-title"><a href="layer_12.html">第六层: 核心系统层</a></h2>
+<div class="post-meta"><span><i class="fa fa-file-code-o"></i> 12 文件</span><span><i class="fa fa-tag"></i> MSPM0G3507</span></div>
+<div class="float-content"><p>12 个源文件，逐行中文注释</p></div>
+</div></article><article class="post-list-thumb post-list-thumb-left">
+<div class="post-thumb"><a href="layer_13.html"><img src="https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807151203983-873040918.jpg" alt=""></a></div>
+<div class="post-content-wrap">
+<div class="post-date"><i class="fa fa-calendar"></i> 2024-H</div>
+<h2 class="post-title"><a href="layer_13.html">第七层: 应用层 - 2024-H 年度任务 ★★★</a></h2>
+<div class="post-meta"><span><i class="fa fa-file-code-o"></i> 6 文件</span><span><i class="fa fa-tag"></i> MSPM0G3507</span></div>
+<div class="float-content"><p>6 个源文件，逐行中文注释</p></div>
+</div></article></section>
+</div></div></div>
+<footer id="footer"><div>🌸 oyz blog · Sakura Theme · 2024-H 代码注释</div></footer>
+<div class="scrollCls" id="scrollInfo"></div>
+<a href="#" class="cd-top"></a>
 <div id="live2d-widget"></div>
 <script src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
-<script>
-L2Dwidget.init({model:{jsonPath:'https://cdn.jsdelivr.net/npm/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json',scale:1},display:{position:'right',width:140,height:280,hOffset:0,vOffset:-20},mobile:{show:true,scale:.45},react:{opacityDefault:.75,opacityOnHover:.2}});
-hljs.highlightAll();
-</script>
-</body></html>
+<script>L2Dwidget.init({model:{jsonPath:'https://cdn.jsdelivr.net/npm/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json',scale:1},display:{position:'right',width:140,height:280,hOffset:0,vOffset:-20},mobile:{show:true,scale:.45},react:{opacityDefault:.75,opacityOnHover:.2}});</script>
+<script src="script.js"></script></body></html>

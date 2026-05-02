@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>🌸 vl53l1_read.h - oyz blog</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="style.css">
+</head><body><div class="site-branding"><span class="logolink moe-mashiro"><a href="index.html">
+<ruby><span class="sakuraso">oyz</span><span class="no">の</span><span class="shironeko">blog</span>
+<rt class="chinese-font">代码注释站</rt></ruby></a></span></div>
+<header id="header" class="visible">
+  <div id="blogTitle"><h1><a href="index.html">🌸 oyz blog</a></h1></div>
+  <div id="navigator"><ul id="navList"><li><a href="index.html"><i class="fa fa-fort-awesome" aria-hidden="true"></i> Home</a><i></i></li>
+<li><a href="layer_0.html"><i class="fa fa-cube" aria-hidden="true"></i> 第1层</a><i></i></li>
+<li><a href="layer_1.html"><i class="fa fa-cubes" aria-hidden="true"></i> 第2层</a><i></i></li>
+<li><a href="layer_2.html"><i class="fa fa-cogs" aria-hidden="true"></i> 第3层</a><i></i></li>
+<li><a href="layer_3.html"><i class="fa fa-microchip" aria-hidden="true"></i> 第4层</a><i></i></li>
+<li><a href="layer_4.html"><i class="fa fa-sliders" aria-hidden="true"></i> 第5层</a><i></i></li>
+<li><a href="layer_5.html"><i class="fa fa-server" aria-hidden="true"></i> 第6层</a><i></i></li>
+<li><a href="layer_6.html"><i class="fa fa-star" aria-hidden="true"></i> 第7层</a><i></i></li>
+<li><a href="#"><i class="fa fa-leaf" aria-hidden="true"></i> 关于</a><i></i>
+<ul class="sub-menu">
+<li><a href="https://github.com/avavyes3-cmd/oyz-blog"><i class="fa fa-github"></i> GitHub</a></li>
+<li><a href="https://oyz-blog.vercel.app"><i class="fa fa-globe"></i> Vercel</a></li>
+</ul></li></ul></div>
+</header>
+<div class="esa-mobile-menu"></div>
+<nav id="mo-nav">
+  <a href="index.html"><i class="fa fa-fort-awesome"></i> Home</a>
+  <a href="index.html"><i class="fa fa-fort-awesome"></i> Home</a>
+  <a href="layer_0.html"><i class="fa fa-cube"></i> 第1层</a>
+  <a href="layer_1.html"><i class="fa fa-cubes"></i> 第2层</a>
+  <a href="layer_2.html"><i class="fa fa-cogs"></i> 第3层</a>
+  <a href="layer_3.html"><i class="fa fa-microchip"></i> 第4层</a>
+  <a href="layer_4.html"><i class="fa fa-sliders"></i> 第5层</a>
+  <a href="layer_5.html"><i class="fa fa-server"></i> 第6层</a>
+  <a href="layer_6.html"><i class="fa fa-star"></i> 第7层</a>
+  <a href="https://github.com/avavyes3-cmd/oyz-blog"><i class="fa fa-github"></i> GitHub</a>
+</nav>
+<div id="main" class="nomargin"><div id="mainContent"><div class="forFlow">
+<a href="layer_3.html" class="back-home">返回层级</a> · <a href="index.html" class="back-home" style="margin-left:8px">返回首页</a>
+<div class="pattern-center">
+<div class="pattern-attachment-img" style="background-image:url(https://img2018.cnblogs.com/blog/1646268/201908/1646268-20190807151151330-1121103170.png)"></div>
+<header class="pattern-header"><h1 class="entry-title">vl53l1_read.h</h1><p class="entry-census">第三层: 设备驱动层 - 陀螺仪/测距 · /home/oyz/嵌入式开发/ti-contest-main/ti-contest-main/platforms/ti-mspm0g3507/custom_src/drivers/sensors/vl53l1x/vl53l1x_platform/vl53l1_read.h</p></header>
+</div>
+<article class="post"><div class="postBody"><div class="file-block">
+<div class="file-block-title">📄 vl53l1_read.h</div>
+<div class="cnblogs_code" id="code_3_3">
+<div class="esa-clipboard-button">Copy</div>
+<table class="code-table"><tr><td class="ln">1</td><td class="code"><pre>#ifndef VL53L1_READ_H</pre></td><td class="anno"><span class="anno">头文件保护</span></td></tr><tr><td class="ln">2</td><td class="code"><pre>#define VL53L1_READ_H</pre></td><td class="anno"><span class="anno"></span></td></tr><tr><td class="ln">3</td><td class="code"><pre> </pre></td><td class="anno"><span class="anno"></span></td></tr><tr><td class="ln">4</td><td class="code"><pre>#include &lt;stdint.h&gt;</pre></td><td class="anno"><span class="anno">引入 stdint.h</span></td></tr><tr><td class="ln">5</td><td class="code"><pre>#include &lt;string.h&gt;</pre></td><td class="anno"><span class="anno">引入 string.h</span></td></tr><tr><td class="ln">6</td><td class="code"><pre>#include &quot;vl53l1_api.h&quot;</pre></td><td class="anno"><span class="anno">引入 vl53l1_api.h</span></td></tr><tr><td class="ln">7</td><td class="code"><pre>#include &quot;vl53l1_platform.h&quot;</pre></td><td class="anno"><span class="anno">引入 vl53l1_platform.h</span></td></tr><tr><td class="ln">8</td><td class="code"><pre>#include &quot;hal_soft_i2c.h&quot;</pre></td><td class="anno"><span class="anno">引入 hal_soft_i2c.h</span></td></tr><tr><td class="ln">9</td><td class="code"><pre>#include &quot;delay.h&quot;</pre></td><td class="anno"><span class="anno">引入 delay.h</span></td></tr><tr><td class="ln">10</td><td class="code"><pre>#include &quot;systick.h&quot;</pre></td><td class="anno"><span class="anno">引入 systick.h</span></td></tr><tr><td class="ln">11</td><td class="code"><pre> </pre></td><td class="anno"><span class="anno"></span></td></tr><tr><td class="ln">12</td><td class="code"><pre>// 优化测量配置参数 - 提高更新频率</pre></td><td class="anno"><span class="anno"></span></td></tr><tr><td class="ln">13</td><td class="code"><pre>#define VL53L1_MEASURE_INTERVAL_MS      15      // 测量间隔15ms (67Hz) - 提高频率</pre></td><td class="anno"><span class="anno">宏: VL53L1_MEASURE_INTERVAL_MS</span></td></tr><tr><td class="ln">14</td><td class="code"><pre>#define VL53L1_TIMING_BUDGET_US         30000   // 时间预算30ms - 缩短预算提高速度</pre></td><td class="anno"><span class="anno">宏: VL53L1_TIMING_BUDGET_US</span></td></tr><tr><td class="ln">15</td><td class="code"><pre>#define VL53L1_TIMEOUT_MS               60      // 测量超时60ms - 缩短超时</pre></td><td class="anno"><span class="anno">宏: VL53L1_TIMEOUT_MS</span></td></tr><tr><td class="ln">16</td><td class="code"><pre>#define VL53L1_MAX_DISTANCE_MM          600     // 最大有效距离60cm</pre></td><td class="anno"><span class="anno">宏: VL53L1_MAX_DISTANCE_MM</span></td></tr><tr><td class="ln">17</td><td class="code"><pre>#define VL53L1_MIN_DISTANCE_MM          10      // 最小有效距离1cm</pre></td><td class="anno"><span class="anno">宏: VL53L1_MIN_DISTANCE_MM</span></td></tr><tr><td class="ln">18</td><td class="code"><pre>#define VL53L1_INIT_DELAY_MS            30      // 初始化延时30ms</pre></td><td class="anno"><span class="anno">宏: VL53L1_INIT_DELAY_MS</span></td></tr><tr><td class="ln">19</td><td class="code"><pre>#define VL53L1_I2C_DELAY_TIME           1       // I2C延时1us - 恢复快速通信</pre></td><td class="anno"><span class="anno">宏: VL53L1_I2C_DELAY_TIME</span></td></tr><tr><td class="ln">20</td><td class="code"><pre> </pre></td><td class="anno"><span class="anno"></span></td></tr><tr><td class="ln">21</td><td class="code"><pre>// VL53L1X距离模式配置 - 使用中距离模式提高速度</pre></td><td class="anno"><span class="anno"></span></td></tr><tr><td class="ln">22</td><td class="code"><pre>#define VL53L1_DISTANCE_MODE            VL53L1_DISTANCEMODE_MEDIUM</pre></td><td class="anno"><span class="anno">宏: VL53L1_DISTANCE_MODE</span></td></tr><tr><td class="ln">23</td><td class="code"><pre> </pre></td><td class="anno"><span class="anno"></span></td></tr><tr><td class="ln">24</td><td class="code"><pre>// ROI区域配置 - 长距离测量使用全ROI获得最大光采集</pre></td><td class="anno"><span class="anno"></span></td></tr><tr><td class="ln">25</td><td class="code"><pre>#define VL53L1_ROI_TOP_LEFT_X           0       // 全区域左上角X</pre></td><td class="anno"><span class="anno">宏: VL53L1_ROI_TOP_LEFT_X</span></td></tr><tr><td class="ln">26</td><td class="code"><pre>#define VL53L1_ROI_TOP_LEFT_Y           15      // 全区域左上角Y  </pre></td><td class="anno"><span class="anno">宏: VL53L1_ROI_TOP_LEFT_Y</span></td></tr><tr><td class="ln">27</td><td class="code"><pre>#define VL53L1_ROI_BOTTOM_RIGHT_X       15      // 全区域右下角X</pre></td><td class="anno"><span class="anno">宏: VL53L1_ROI_BOTTOM_RIGHT_X</span></td></tr><tr><td class="ln">28</td><td class="code"><pre>#define VL53L1_ROI_BOTTOM_RIGHT_Y       0       // 全区域右下角Y</pre></td><td class="anno"><span class="anno">宏: VL53L1_ROI_BOTTOM_RIGHT_Y</span></td></tr><tr><td class="ln">29</td><td class="code"><pre> </pre></td><td class="anno"><span class="anno"></span></td></tr><tr><td class="ln">30</td><td class="code"><pre>// 函数返回值定义</pre></td><td class="anno"><span class="anno"></span></td></tr><tr><td class="ln">31</td><td class="code"><pre>typedef enum {</pre></td><td class="anno"><span class="anno">定义枚举</span></td></tr><tr><td class="ln">32</td><td class="code"><pre>    VL53L1_OK = 1,          // 有新数据</pre></td><td class="anno"><span class="anno"></span></td></tr><tr><td class="ln">33</td><td class="code"><pre>    VL53L1_NO_DATA = 0,     // 无新数据</pre></td><td class="anno"><span class="anno"></span></td></tr><tr><td class="ln">34</td><td class="code"><pre>    VL53L1_ERROR = -1       // 错误</pre></td><td class="anno"><span class="anno"></span></td></tr><tr><td class="ln">35</td><td class="code"><pre>} VL53L1_Status_t;</pre></td><td class="anno"><span class="anno"></span></td></tr><tr><td class="ln">36</td><td class="code"><pre> </pre></td><td class="anno"><span class="anno"></span></td></tr><tr><td class="ln">37</td><td class="code"><pre>// 函数声明</pre></td><td class="anno"><span class="anno"></span></td></tr><tr><td class="ln">38</td><td class="code"><pre>void VL53L1_Read_Init(void);</pre></td><td class="anno"><span class="anno">函数: VL53L1_Read_Init()</span></td></tr><tr><td class="ln">39</td><td class="code"><pre>void VL53L1_Process(void);</pre></td><td class="anno"><span class="anno">函数: VL53L1_Process()</span></td></tr><tr><td class="ln">40</td><td class="code"><pre>int VL53L1_GetDistance(uint16_t *distance);</pre></td><td class="anno"><span class="anno">函数: VL53L1_GetDistance()</span></td></tr><tr><td class="ln">41</td><td class="code"><pre>uint8_t VL53L1_IsReady(void);</pre></td><td class="anno"><span class="anno">函数: VL53L1_IsReady()</span></td></tr><tr><td class="ln">42</td><td class="code"><pre>void VL53L1_Reset(void);</pre></td><td class="anno"><span class="anno">函数: VL53L1_Reset()</span></td></tr><tr><td class="ln">43</td><td class="code"><pre> </pre></td><td class="anno"><span class="anno"></span></td></tr><tr><td class="ln">44</td><td class="code"><pre>#endif // VL53L1_READ_H</pre></td><td class="anno"><span class="anno"></span></td></tr><tr><td class="ln">45</td><td class="code"><pre> </pre></td><td class="anno"><span class="anno"></span></td></tr></table>
+</div></div></div></article>
+</div></div></div>
+<footer id="footer"><div>🌸 oyz blog · Sakura Theme · 2024-H 代码注释</div></footer>
+<div class="scrollCls" id="scrollInfo"></div>
+<a href="#" class="cd-top"></a>
+<div class="esa-catalog"><div class="esa-catalog-title">目录</div><div class="esa-catalog-contents show"><ul>
+<li><a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">📄 文件顶部</a></li>
+<li><a href="#" onclick="var e=document.querySelector('.file-block');if(e)e.scrollIntoView({behavior:'smooth'});return false">📝 代码正文</a></li>
+</ul></div></div>
+<div id="live2d-widget"></div>
+<script src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
+<script>L2Dwidget.init({model:{jsonPath:'https://cdn.jsdelivr.net/npm/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json',scale:1},display:{position:'right',width:140,height:280,hOffset:0,vOffset:-20},mobile:{show:true,scale:.45},react:{opacityDefault:.75,opacityOnHover:.2}});</script>
+<script src="script.js"></script></body></html>
