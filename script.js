@@ -46,6 +46,13 @@ function renderHome() {
     cards += '<article class="post-list-thumb' + left + '"><div class="post-thumb"><a href="#layer/' + i + '"><img class="lazyload" src="' + ly.thumb + '" alt="" onerror="this.remove();this.closest(\'.post-thumb\').classList.add(\'img-fallback\')"></a></div><div class="post-content-wrap"><div class="post-date"><i class="fa fa-calendar"></i> ' + ly.date + '</div><h2 class="post-title"><a href="#layer/' + i + '">' + ly.title + '</a></h2><div class="post-meta"><span><i class="fa fa-file-code-o"></i> ' + ly.fileCount + ' 文件</span><span><i class="fa fa-tag"></i> ' + ly.tag + '</span></div><div class="float-content"><p>' + ly.excerpt + '</p></div></div></article>';
   });
   var notice = '<div class="notice"><i class="fa fa-volume-up"></i> 海上月是天上月，眼前人是心上人。这里是 TI 竞赛智能车 2024-H 代码注释站。</div>';
+  // Add custom column cards
+  if (SITE_DATA.customColumns && SITE_DATA.customColumns.length > 0) {
+    SITE_DATA.customColumns.forEach(function (col) {
+      var thumb = (SITE_DATA.thumbImages || [])[0];
+      cards += '<article class="post-list-thumb"><div class="post-thumb" style="background:linear-gradient(135deg,#f0e6ff,#e6f0ff)"><a href="#custom/' + col.id + '"></a></div><div class="post-content-wrap"><div class="post-date"><i class="fa fa-pencil"></i> 自定义栏目</div><h2 class="post-title"><a href="#custom/' + col.id + '">📝 ' + col.title + '</a></h2><div class="post-meta"><span><i class="fa fa-file-text-o"></i> ' + col.articles.length + ' 篇文章</span></div><div class="float-content"><p>点击查看 ' + col.title + ' 下的所有 Markdown 文章。</p></div></div></article>';
+    });
+  }
   el.innerHTML = '<div class="forFlow">' + notice + '<section class="post">' + cards + '</section><div id="footer"><div>🌸 oyz blog · Sakura Theme</div></div></div>';
   document.getElementById("main").className = "";
   document.getElementById("mainHeader").style.display = "";
