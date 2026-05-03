@@ -31,6 +31,8 @@ function route() {
   var cm = h.match(/^#code\/(\d+)\/(\d+)$/);
   if (cm) return renderCodePage(parseInt(cm[1]), parseInt(cm[2]));
   if (h === "#about") return renderAbout();
+  var cust = h.match(/^#custom\/(.+)$/);
+  if (cust) return renderCustomColumn(cust[1]);
   renderHome();
 }
 
@@ -109,6 +111,29 @@ function renderCodePage(li, ci) {
     });
 }
 
+function renderCustomColumn(colId) {
+  var cols = SITE_DATA.customColumns || []; var col = cols.find(function (c) { return c.id === colId; });
+  if (!col) return renderHome();
+  var el = document.getElementById("mainContent");
+  var cards = col.articles.map(function (a) {
+    var md = typeof marked !== "undefined" ? marked.parse(a.content) : a.content.replace(/\\n/g, "<br>");
+    return '<article class="post-list-thumb" style="flex-direction:column"><div class="post-content-wrap" style="padding:30px"><h2 class="post-title" style="font-size:22px">' + a.title + '</h2><div class="postBody" style="margin-top:12px">' + md + '</div></div></article>';
+  }).join("");
+  var el2 = document.getElementById("mainContent");
+  var editBtn = '<span style="float:right;cursor:pointer;color:#FE9600;font-size:13px" onclick="editColumnTitle(\'' + colId + '\')">✏️ 编辑标题</span>';
+  el.innerHTML = '<div class="forFlow"><a href="#" class="back-link" onclick="location.hash=\'\';return false">返回首页</a><div class="pattern-center"><div class="pattern-attachment-img"></div><header class="pattern-header"><h1 class="entry-title">' + col.title + editBtn + '</h1><p class="entry-census">共 ' + col.articles.length + ' 篇文章</p></header></div><section class="post">' + cards + '</section><div id="footer"><div>🌸 oyz blog</div></div></div>';
+  document.getElementById("main").className = "nomargin";
+  document.getElementById("mainHeader").style.display = "none";
+  document.title = "🌸 " + col.title + " - oyz blog";
+}
+function editColumnTitle(id) {
+  var col = (SITE_DATA.customColumns || []).find(function (c) { return c.id === id; });
+  if (!col) return; var t = prompt("输入栏目标题:", col.title);
+  if (!t) return; col.title = t;
+  renderNav(SITE_DATA.nav); renderMobileMenu(SITE_DATA.nav);
+  renderCustomColumn(id);
+}
+
 function renderAbout() {
   var el = document.getElementById("mainContent");
   el.innerHTML = '<div class="forFlow"><a href="#" class="back-link" onclick="location.hash=\'\';return false">返回首页</a><div style="background:rgba(255,255,255,.86);border-radius:12px;padding:36px;line-height:2"><h2 style="color:#314659;margin-bottom:16px">💡 关于 oyz blog</h2><p style="color:#61687C">基于 <strong style="color:#FE9600">TI MSPM0G3507</strong> 微控制器开发的统一智能车竞赛平台。</p><p style="color:#61687C">采用七层分层架构, 涵盖 2024 年全国大学生电子设计竞赛 H 题完整解决方案。</p><p style="color:#61687C;margin-top:16px">平台: MSPM0G3507 (ARM Cortex-M0+) · Sakura Theme</p></div><div id="footer"><div>🌸 oyz blog</div></div></div>';
@@ -149,8 +174,8 @@ function annotateLine(s) {
 }
 
 /* ── Render ── */
-function renderNav(nav) { var n = document.getElementById("navList"); if (!n) return; var h = ""; nav.forEach(function (item, i) { if (i === nav.length - 1) h += '<li><a href="' + item.url + '"><i class="fa ' + item.icon + '"></i> ' + item.title + '</a><i></i><ul class="sub-menu"><li><a href="https://github.com/avavyes3-cmd/oyz-blog"><i class="fa fa-github"></i> GitHub</a></li><li><a href="https://oyz-blog.vercel.app"><i class="fa fa-globe"></i> Vercel</a></li></ul></li>'; else h += '<li><a href="' + item.url + '"><i class="fa ' + item.icon + '"></i> ' + item.title + '</a><i></i></li>'; }); n.innerHTML = h; }
-function renderMobileMenu(nav) { var p = document.querySelector(".mobile-menu-panel"); if (!p) return; var h = ""; nav.forEach(function (item) { h += '<a href="' + item.url + '">' + item.title + '</a>'; }); h += '<a href="https://github.com/avavyes3-cmd/oyz-blog"><i class="fa fa-github"></i> GitHub</a>'; p.innerHTML = h; }
+function renderNav(nav) { var n = document.getElementById("navList"); if (!n) return; var h = ""; nav.forEach(function (item, i) { h += '<li><a href="' + item.url + '"><i class="fa ' + item.icon + '"></i> ' + item.title + '</a><i></i></li>'; }); if (SITE_DATA.customColumns && SITE_DATA.customColumns.length > 0) { SITE_DATA.customColumns.forEach(function (col) { h += '<li><a href="#custom/' + col.id + '"><i class="fa fa-pencil"></i> ' + col.title + '</a><i></i></li>'; }); } h += '<li><a href="#"><i class="fa fa-leaf"></i> 关于</a><i></i><ul class="sub-menu"><li><a href="https://github.com/avavyes3-cmd/oyz-blog"><i class="fa fa-github"></i> GitHub</a></li><li><a href="https://oyz-blog.vercel.app"><i class="fa fa-globe"></i> Vercel</a></li></ul></li>'; n.innerHTML = h; }
+function renderMobileMenu(nav) { var p = document.querySelector(".mobile-menu-panel"); if (!p) return; var h = ""; nav.forEach(function (item) { h += '<a href="' + item.url + '">' + item.title + '</a>'; }); if (SITE_DATA.customColumns) { SITE_DATA.customColumns.forEach(function (col) { h += '<a href="#custom/' + col.id + '"><i class="fa fa-pencil"></i> ' + col.title + '</a>'; }); } h += '<a href="#about">💡 关于</a>'; h += '<a href="https://github.com/avavyes3-cmd/oyz-blog"><i class="fa fa-github"></i> GitHub</a>'; p.innerHTML = h; }
 
 /* ── Init ── */
 function initScrollProgress(){var b=document.getElementById("scrollInfo");if(!b)return;window.addEventListener("scroll",function(){var h=document.documentElement.scrollHeight-window.innerHeight;b.style.width=h>0?(window.scrollY/h*100)+"%":"0%"})}
