@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
   initCopyButtons();
   initCatalog();
   initHoverEffects();
+  if (typeof PETALS_ENABLED === "undefined" || PETALS_ENABLED) initPetals();
+  if (typeof MUSIC_ENABLED !== "undefined" && MUSIC_ENABLED) initMusic();
 });
 
 /* ── Render desktop nav ── */
@@ -121,4 +123,58 @@ function initHoverEffects() {
     if (s) { s.style.background = "rgba(255,255,255,.5)"; s.style.color = "#464646"; }
     if (c) c.style.display = "none";
   });
+}
+
+/* ── Sakura petal falling ── */
+function initPetals() {
+  var petals = ["🌸","💮","🌺","🩷","✿","❀","❁"];
+  var container = document.createElement("div");
+  container.className = "petal-container";
+  document.body.appendChild(container);
+
+  function drop() {
+    var p = document.createElement("span");
+    p.className = "petal";
+    p.textContent = petals[Math.floor(Math.random() * petals.length)];
+    p.style.left = Math.random() * 96 + "%";
+    p.style.fontSize = (16 + Math.random() * 22) + "px";
+    p.style.animationDuration = (8 + Math.random() * 12) + "s";
+    p.style.animationDelay = Math.random() * 3 + "s";
+    container.appendChild(p);
+    setTimeout(function () { p.remove(); }, 22000);
+  }
+
+  drop(); drop(); drop();
+  setInterval(drop, 2200);
+}
+
+/* ── Music player ── */
+function initMusic() {
+  var link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href = "https://cdn.jsdelivr.net/npm/aplayer@1.10.0/dist/APlayer.min.css";
+  document.head.appendChild(link);
+
+  var div = document.createElement("div");
+  div.id = "aplayer-container";
+  document.body.appendChild(div);
+
+  var script = document.createElement("script");
+  script.src = "https://cdn.jsdelivr.net/npm/aplayer@1.10.0/dist/APlayer.min.js";
+  script.onload = function () {
+    new APlayer({
+      container: document.getElementById("aplayer-container"),
+      fixed: true,
+      mini: true,
+      autoplay: false,
+      theme: "#FE9600",
+      loop: "all",
+      order: "random",
+      preload: "none",
+      audio: [
+        { name: "Sakura", artist: "Sakura Theme", url: "", cover: "" }
+      ]
+    });
+  };
+  document.body.appendChild(script);
 }
