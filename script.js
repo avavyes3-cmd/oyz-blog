@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   initCommon();
   if (typeof PETALS_ENABLED === "undefined" || PETALS_ENABLED) initPetals();
+  buildSearchIndex();
+  initSearchUI();
 });
 
 function initCommon() {
@@ -160,3 +162,56 @@ function initScrollDown(){var s=document.querySelector(".scroll-down");if(!s)ret
 function initCopyBtns(){document.querySelectorAll(".esa-clipboard-button").forEach(function(b){b.addEventListener("click",function(){var p=this.parentElement.querySelector("pre")||this.parentElement.querySelector(".code-table");var t=p?p.textContent:"";if(!navigator.clipboard)return;navigator.clipboard.writeText(t).then(function(){b.textContent="Copied!";setTimeout(function(){b.textContent="Copy"},2000)})})})}
 function initHoverEffects(){var s=document.querySelector(".site-branding");if(!s)return;s.addEventListener("mouseenter",function(){var sk=this.querySelector(".sakuraso"),cf=this.querySelector(".chinese-font");if(sk){sk.style.background="#FE9600";sk.style.color="#fff"}if(cf)cf.style.display="block"});s.addEventListener("mouseleave",function(){var sk=this.querySelector(".sakuraso"),cf=this.querySelector(".chinese-font");if(sk){sk.style.background="rgba(255,255,255,.5)";sk.style.color="#464646"}if(cf)cf.style.display="none"})}
 function initPetals(){var p=["🌸","💮","🌺","🩷","✿","❀","❁"];var c=document.createElement("div");c.className="petal-container";document.body.appendChild(c);function d(){var e=document.createElement("span");e.className="petal";e.textContent=p[Math.floor(Math.random()*p.length)];e.style.left=Math.random()*96+"%";e.style.fontSize=(16+Math.random()*22)+"px";e.style.animationDuration=(8+Math.random()*12)+"s";c.appendChild(e);setTimeout(function(){e.remove()},22000)}d();d();d();setInterval(d,2200)}
+
+/* ── Prism.js highlight ── */
+function highlightCode(el) {
+  if (typeof Prism === "undefined") return;
+  el.querySelectorAll("pre").forEach(function (pre) { Prism.highlightElement(pre); });
+}
+
+/* ── lunr.js search ── */
+var searchIdx = null;
+function buildSearchIndex() {
+  if (typeof lunr === "undefined" || typeof SEARCH_DATA === "undefined") return;
+  searchIdx = lunr(function () {
+    this.ref("id"); this.field("title", { boost: 10 }); this.field("type"); this.field("content");
+    SEARCH_DATA.forEach(function (doc) { this.add(doc); }, this);
+  });
+}
+function doSearch(query) {
+  if (!searchIdx) return [];
+  if (!query || query.length < 2) return [];
+  try {
+    return searchIdx.search(query).slice(0, 15).map(function (r) {
+      var doc = SEARCH_DATA.find(function (d) { return d.id === r.ref; });
+      return doc || { id: r.ref, title: r.ref, type: "?" };
+    });
+  } catch (e) { return []; }
+}
+
+/* ── Search UI ── */
+function initSearchUI() {
+  var nav = document.getElementById("navigator");
+  if (!nav) return;
+  var wrap = document.createElement("span");
+  wrap.style.cssText = "position:relative;margin-left:8px";
+  var input = document.createElement("input");
+  input.type = "text"; input.placeholder = "搜索..."; input.id = "searchInput";
+  input.style.cssText = "padding:6px 12px;border:1px solid #ddd;border-radius:16px;font-size:13px;width:140px;outline:none;transition:border .2s;font-family:inherit";
+  input.addEventListener("focus", function () { input.style.borderColor = "#FE9600"; input.style.width = "200px"; });
+  input.addEventListener("blur", function () { input.style.borderColor = "#ddd"; input.style.width = "140px"; });
+  var dd = document.createElement("div");
+  dd.id = "searchResults";
+  dd.style.cssText = "display:none;position:absolute;top:38px;left:0;background:#fff;border-radius:8px;box-shadow:0 6px 28px rgba(0,0,0,.14);min-width:300px;max-height:400px;overflow-y:auto;z-index:9999;padding:6px 0";
+  input.addEventListener("input", function () {
+    var results = doSearch(input.value);
+    if (results.length === 0) { dd.style.display = "none"; return; }
+    dd.style.display = "block";
+    dd.innerHTML = results.map(function (r) {
+      var href = r.id.startsWith("layer-") ? "#layer/" + r.id.split("-")[1] : "#code/" + r.id.split("-")[1] + "/" + r.id.split("-")[2];
+      return '<a href="' + href + '" style="display:block;padding:8px 16px;color:#61687C;font-size:13px;border-bottom:1px solid #f5f5f5"><span style="color:#999;font-size:11px">[' + r.type + ']</span> ' + r.title + '</a>';
+    }).join("");
+  });
+  document.addEventListener("click", function (e) { if (!wrap.contains(e.target)) dd.style.display = "none"; });
+  wrap.appendChild(input); wrap.appendChild(dd); nav.appendChild(wrap);
+}
