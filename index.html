@@ -9,22 +9,36 @@
 <button class="scroll-down" type="button">⌄</button></section>
 <main id="main"><div id="mainContent"></div></main>
 <div class="scrollCls" id="scrollInfo"></div><a href="#" class="cd-top"></a>
-<canvas id="live2d-canvas" style="position:fixed;right:8px;bottom:8px;z-index:9999;pointer-events:auto;width:180px;height:300px"></canvas>
-<script src="assets/live2d/pixi.min.js"></script>
+<div id="live2d-widget"></div>
+<script src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
 <script>
-(function(){var m="assets/live2d/dafeng/dafeng_7.model3.json";
-var c=document.getElementById("live2d-canvas");
-function loadScript(u,cb){var s=document.createElement("script");s.src=u;s.onload=cb;document.head.appendChild(s)}
-function loadLive2D(){try{
-var app=new PIXI.Application({view:c,width:180,height:300,transparent:true,backgroundAlpha:0});
-PIXI.live2d.Live2DModel.from(m).then(function(model){
-model.scale.set(0.11);model.x=15;model.y=25;app.stage.addChild(model);
-console.log("🌸 Live2D: 大凤 (Azur Lane)");
-}).catch(function(e){c.style.display="none";console.warn("Live2D:",e.message)})
-}catch(e){c.style.display="none"}}
-loadScript("assets/live2d/live2dcubismcore.min.js",function(){
-loadScript("assets/live2d/pixi-live2d-display.min.js",loadLive2D)
-})})();
+var L2D_MODELS=[{"name": "\u5927\u51e4 Azur Lane", "path": "assets/live2d/dafeng/dafeng_7.model3.json"}, {"name": "Shizuku", "path": "https://cdn.jsdelivr.net/npm/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json"}, {"name": "Hijiki", "path": "https://cdn.jsdelivr.net/npm/live2d-widget-model-hijiki@1.0.5/assets/hijiki.model.json"}];
+var l2dIdx=0;
+function loadLive2D(idx){
+var m=L2D_MODELS[idx];
+var el=document.getElementById("live2d-widget");el.innerHTML="";
+var path=m.path;
+if(idx===0){
+  var s1=document.createElement("script");s1.src="assets/live2d/live2dcubismcore.min.js";
+  s1.onload=function(){
+    var s2=document.createElement("script");s2.src="assets/live2d/pixi-live2d-display.min.js";
+    s2.onload=function(){
+      var c=document.createElement("canvas");c.id="l2d-c";
+      c.style.cssText="width:180px;height:300px";el.appendChild(c);
+      try{
+        var app=new PIXI.Application({view:c,width:360,height:600,transparent:true,backgroundAlpha:0});
+        PIXI.live2d.Live2DModel.from(path).then(function(model){
+          model.scale.set(0.18);model.x=30;model.y=50;app.stage.addChild(model);console.log("🌸 大凤")
+        }).catch(function(e){console.warn(e);l2dIdx++;loadLive2D(l2dIdx)})
+      }catch(e){console.warn(e);l2dIdx++;loadLive2D(l2dIdx)}
+    };document.head.appendChild(s2);
+  };document.head.appendChild(s1);
+}else{
+  try{L2Dwidget.init({model:{jsonPath:path,scale:1},display:{position:"right",width:140,height:280},mobile:{show:false},react:{opacityDefault:.8}})}catch(e){}
+}
+}loadLive2D(l2dIdx);
+document.getElementById("live2d-widget").addEventListener("click",function(){
+l2dIdx=(l2dIdx+1)%L2D_MODELS.length;loadLive2D(l2dIdx)});
 <\/script>
 
 <script>var PETALS_ENABLED=true;</script>
