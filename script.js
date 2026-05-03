@@ -157,7 +157,7 @@ function editColumnTitle(id) {
 
 function renderAbout() {
   var el = document.getElementById("mainContent");
-  el.innerHTML = '<div class="forFlow"><a href="#" class="back-link" onclick="location.hash=\'\';return false">返回首页</a><div style="background:rgba(255,255,255,.86);border-radius:12px;padding:36px;line-height:2"><h2 style="color:#314659;margin-bottom:16px">💡 关于 oyz blog</h2><p style="color:#61687C">基于 <strong style="color:#FE9600">TI MSPM0G3507</strong> 微控制器开发的统一智能车竞赛平台。</p><p style="color:#61687C">采用七层分层架构, 涵盖 2024 年全国大学生电子设计竞赛 H 题完整解决方案。</p><p style="color:#61687C;margin-top:16px">平台: MSPM0G3507 (ARM Cortex-M0+) · Sakura Theme</p></div><div id="footer"><div>🌸 oyz blog</div></div></div>';
+  el.innerHTML = '<div class="forFlow"><a href="#" class="back-link" onclick="location.hash=\'\';return false">返回首页</a><div style="background:rgba(255,255,255,.86);border-radius:12px;padding:36px;line-height:2"><h2 style="color:#314659;margin-bottom:16px">💡 关于 oyz blog</h2><p style="color:#61687C">基于 <strong style="color:#FE9600">TI MSPM0G3507</strong> 微控制器开发的统一智能车竞赛平台。</p><p style="color:#61687C">采用七层分层架构, 涵盖 2024 年全国大学生电子设计竞赛 H 题完整解决方案。</p><p style="color:#61687C;margin-top:16px">平台: MSPM0G3507 (ARM Cortex-M0+) · Sakura Theme</p><p style="color:#999;font-size:12px;margin-top:12px">Live2D models from <a href="https://github.com/Eikanya/Live2d-model" target="_blank">Eikanya/Live2d-model</a> · 点击看板娘切换模型</p></div><div id="footer"><div>🌸 oyz blog</div></div></div>';
   document.getElementById("main").className = "nomargin";
   document.getElementById("mainHeader").style.display = "none";
   document.title = "💡 关于 - oyz blog";
