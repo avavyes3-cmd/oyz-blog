@@ -30,6 +30,7 @@ function route() {
   if (m) return renderLayerPage(parseInt(m[1]));
   var cm = h.match(/^#code\/(\d+)\/(\d+)$/);
   if (cm) return renderCodePage(parseInt(cm[1]), parseInt(cm[2]));
+  if (h === "#ti") return renderTIColumn();
   if (h === "#about") return renderAbout();
   var cust = h.match(/^#custom\/(.+)$/);
   if (cust) return renderCustomColumn(cust[1]);
@@ -116,6 +117,19 @@ function renderCodePage(li, ci) {
       var block = document.getElementById("codeblock");
       if (block) block.innerHTML = '<div style="text-align:center;padding:40px;color:#999"><i class="fa fa-exclamation-triangle"></i> 文件加载失败</div>';
     });
+}
+
+function renderTIColumn() {
+  var layers = SITE_DATA.layers || [];
+  var el = document.getElementById("mainContent");
+  var cards = layers.map(function (ly, i) {
+    var left = (i % 2 === 1) ? " post-list-thumb-left" : "";
+    return '<article class="post-list-thumb' + left + '"><div class="post-thumb"><a href="#layer/' + i + '"><img class="lazyload" src="' + ly.thumb + '" alt="" onerror="this.remove();this.closest(\'.post-thumb\').classList.add(\'img-fallback\')"></a></div><div class="post-content-wrap"><div class="post-date"><i class="fa fa-calendar"></i> ' + ly.date + '</div><h2 class="post-title"><a href="#layer/' + i + '">' + ly.title + '</a></h2><div class="post-meta"><span><i class="fa fa-file-code-o"></i> ' + ly.fileCount + ' 文件</span><span><i class="fa fa-tag"></i> ' + ly.tag + '</span></div><div class="float-content"><p>' + ly.excerpt + '</p></div></div></article>';
+  }).join("");
+  el.innerHTML = '<div class="forFlow"><a href="#" class="back-link" onclick="location.hash=\'\';return false">返回首页</a><div class="pattern-center"><div class="pattern-attachment-img"></div><header class="pattern-header"><h1 class="entry-title">TI 2024-H 竞赛智能车</h1><p class="entry-census">MSPM0G3507 · 103 源文件 · 七层架构 · 逐行中文注释</p></header></div><section class="post">' + cards + '</section><div id="footer"><div>🌸 oyz blog</div></div></div>';
+  document.getElementById("main").className = "nomargin";
+  document.getElementById("mainHeader").style.display = "none";
+  document.title = "🌸 TI 2024-H - oyz blog";
 }
 
 function renderCustomColumn(colId) {
