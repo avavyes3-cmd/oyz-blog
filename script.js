@@ -77,7 +77,6 @@ function renderCodePage(li, ci) {
   var codeFiles = SITE_DATA.codeFiles && SITE_DATA.codeFiles[li] ? SITE_DATA.codeFiles[li] : [];
   var cf = codeFiles[ci]; if (!cf) return renderLayerPage(li);
 
-  var slug = li + "_" + ci;
   var el = document.getElementById("mainContent");
   var img = (SITE_DATA.pageImages || [])[(li * 7 + ci) % (SITE_DATA.pageImages||[1]).length];
   el.innerHTML = '<div class="forFlow"><a href="#layer/' + li + '" class="back-link">返回层级</a><a href="#" class="back-link" onclick="location.hash=\'\';return false">返回首页</a><div class="pattern-center"><div class="pattern-attachment-img" style="background-image:url(' + img + ')"></div><header class="pattern-header"><h1 class="entry-title">' + cf.name + '</h1><p class="entry-census">' + ly.title + '</p></header></div><article class="post"><div class="postBody"><div class="file-block"><div class="file-block-title">📄 ' + cf.name + '</div><div class="cnblogs_code" id="codeblock"><div class="esa-clipboard-button">Copy</div><div style="text-align:center;padding:30px;color:#999">⏳ 加载中...</div></div></div></div></article><div id="footer"><div>🌸 oyz blog</div></div></div>';
@@ -86,7 +85,7 @@ function renderCodePage(li, ci) {
   document.title = "🌸 " + cf.name + " - oyz blog";
 
   // Fetch source and annotate
-  fetch("src-files/" + slug + ".txt")
+  fetch("src-files/" + slug + cf.ext)
     .then(function (r) { if (!r.ok) throw Error("404"); return r.text(); })
     .then(function (text) {
       var lines = text.split("\n");
